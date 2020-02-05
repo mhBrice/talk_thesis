@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Contraintes et moteurs des changements dans les forêts du Québec</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pierre Legendre, Marie-Josée Fortin    github.com/mhBrice/talk_transition" />
+    <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/academicons-1.8.1/css/academicons.min.css">
+    <link rel="stylesheet" href="mytemplate.css" type="text/css" />
+    <link rel="stylesheet" href="mytemplate-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Contraintes et moteurs des changements dans les forêts du Québec
+## Marie-Hélène Brice
+### Pierre Legendre, Marie-Josée Fortin <br/> <a href="https://github.com/mhBrice/talk_transition"><i class="fa fa-github" aria-hidden="true"></i> github.com/mhBrice/talk_transition</a>
+
+---
+
+
+
+
+
+
+
+
+
+## Déplacement des niches climatiques
+
+Future enveloppe climatique de l'Érable à sucre (2071-2100)
+
+.center[
+![:scale 60%](images/mckenney_maple.gif)
+]
+
+.footnote[McKenney et al. 2007. BioScience.]
+
+
+---
+## Contraintes à la migration
+
+- Démographie lente
+- Dispersion limitée
+- Hétérogénéité du sol
+- Compétition interspécifique
+
+
+.center[![:scale 87%](images/niche_vs_tree.png)]
+
+---
+## États alternatifs stables
+
+&lt;br&gt;
+
+.center[
+![](images/etat_alternatif.png)]
+
+.footnote[Johnstone et al. 2016. Frontiers in Ecology and the Environment.]
+
+
+---
+## ![:scale 1.1em](images/target.svg)bjectifs de la thèse
+
+**Comprendre et démêler l'influence du climat et des perturbations sur les changements dans les communautés forestières selon 3 points de vue différents : **
+
+&lt;br&gt;
+
+&gt; **Chapitre** .image-holder[ ![:scale 1.2em](images/one.svg) Changements de composition des forêts avec la diversité ß temporelle et un indice de thermophilization. ]
+&gt;
+&gt; **Chapitre** .image-holder[ ![:scale 1.2em](images/two.svg) Dynamique de transition des forêts en 4 états. ]
+&gt;
+&gt; **Chapitre** .image-holder[ ![:scale 1.2em](images/three.svg) Recrutement des espèces tempérées à leur limite nord. ]
+
+
+&lt;br&gt;
+
+.center[.image-holder[
+![:scale 230px](images/mixed.jpg)
+![:scale 40px](images/right-arrow.svg)
+![:scale 230px](images/pioneer.jpg)
+![:scale 40px](images/right-arrow.svg)
+![:scale 230px](images/temperate.jpg)
+]]
+
+
+
+---
+## Hypothèses
+
+.center[
+![:scale 80%](images/hypo1.png)
+]
+--
+.center[
+![:scale 80%](images/hypo2.png)
+]
+--
+.center[
+![:scale 80%](images/hypo3.png)
+]
+
+---
+## Données des inventaires forestiers
+
+Inventaires forestiers du Québec Méridional 	
+  - 12000+ parcelles permanentes échantillonnées durant 5 grands inventaires entre 1970 et 2018 (par le MFFPQ)
+  - Sélection de 11058 parcelles inventoriées au moins 2 fois chacune
+
+
+.center[
+![:scale 80%](images/fig1_region.png)
+]
+
+
+---
+
+class: inverse, center, middle
+
+# Chapitre 1 
+
+### Changements de composition des forêts
+
+
+#### ![:faic](hourglass-end)
+
+---
+## Thermophilisation des communautés
+
+.center[
+![:scale 60%](images/thermo.png)
+]
+
+.footnote[Bertrand et al. 2011]
+
+
+
+---
+## Thermophilisation des communautés
+
+&lt;br&gt;&lt;br&gt;
+
+
+.center[
+![:scale 100%](images/thermo_res.png)
+]
+
+.footnote[Brice et al. 2019. Global Ecology and Biogeography]
+
+---
+## Thermophilisation des communautés
+
+
+.center[
+![:scale 65%](images/thermo_contrib.png)
+]
+
+.footnote[Brice et al. 2019. Global Ecology and Biogeography]
+
+---
+class: inverse, center, middle
+
+# Chapitre 2
+
+### Dynamique de transition des forêts
+
+
+#### ![:faic](hourglass-half)
+
+---
+## Données des inventaires forestiers
+
+.center[
+![:scale 90%](images/diag_trans_pics_fr.png)
+]
+
+---
+## Données des inventaires forestiers
+
+.center[
+![:scale 65%](images/indval_states.png)
+]
+
+---
+## Données des inventaires forestiers
+
+&lt;br&gt;
+
+.center[
+![:scale 100%](images/tableau.png)
+]
+---
+## Modèle
+
+##### Modèle de Markov multi-états à temps continu
+
+&lt;img src="index_files/figure-html/trans_time-1.png" width="475.2" style="display: block; margin: auto;" /&gt;
+
+- Processus de Markov: 
+  - Les transitions dépendent de l'état actuel, pas des états antérieurs
+
+- Temps continu: 
+  - Intervalle de temps irrégulier; 
+  - Plusieurs transitions possibles durant un intervalle;
+  - Le moment exact de la transition n'est pas connu
+
+---
+## Modèle
+
+##### Modèle de Markov multi-états à temps continu
+
+&lt;br&gt;
+Les transitions entre les états peuvent dépendre de l'environnement:
+
+.left-column[
+&lt;br&gt;
+**Climat**
+
+&lt;br&gt;&lt;br&gt;
+
+**Perturbations**
+
+&lt;br&gt;&lt;br&gt;
+
+**Sol**
+]
+
+.right-column[
+&gt; ![:faic](thermometer-full) Température de la saison de croissance à `\(t_{i-1}\)`
+
+&gt; ![:scale 1.1em](images/cloud.svg) Indice d'humidité climatique (CMI) à `\(t_{i-1}\)` 
+
+&lt;br&gt;
+&gt; ![:scale 1.1em](images/fire.svg) Perturbations naturelles entre `\(t_{i-1}\)` et `\(t_{i}\)`
+
+&gt; ![:scale 1.2em](images/stump.svg) Coupes entre `\(t_{i-1}\)` et `\(t_{i}\)`
+
+&lt;br&gt;
+&gt; ![:scale 1.1em](images/soil.svg) pH du sol
+
+&gt; ![:faic](tint) Drainage du sol
+
+]
+
+---
+## Modèle
+
+###### Matrice d'intensité Q contenant les risques de transition instantanés (ligne à colonne)
+
+&lt;img src="index_files/figure-html/qmatrix-1.png" width="360" style="display: block; margin: auto;" /&gt;
+
+&lt;br&gt;
+**Pour les transtions entre tous les états sauf vers Pionnier:**
+
+`$$q_{rs} = \textbf{baseline} \times exp(\beta_{c} \times \textbf{climat} + \beta_{p} \times \textbf{perturbation} + \beta_{s} \times \textbf{sol})$$`
+
+**Pour les transitions vers Pionnier:**
+
+`$$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$$`
+
+---
+## Transitions observées
+
+&lt;img src="index_files/figure-html/trans_diag-1.png" width="828" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
+
+
+
+---
+## Probabilités de transitions
+
+##### Peu ou pas de coupe
+
+&lt;img src="index_files/figure-html/pmat_disturb0-1.png" width="720" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Probabilités de transitions
+
+##### Coupes modérées
+
+&lt;img src="index_files/figure-html/pmat_disturb1-1.png" width="720" style="display: block; margin: auto;" /&gt;
+
+---
+## Probabilités de transitions
+
+##### Coupes majeures
+
+&lt;img src="index_files/figure-html/pmat_disturb2-1.png" width="720" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Déplacement de l'écotone à l'équilibre
+
+
+
+
+##### Peu ou pas de coupe
+&lt;img src="index_files/figure-html/steady_state11-1.png" width="756" style="display: block; margin: auto;" /&gt;
+
+---
+## Déplacement de l'écotone à l'équilibre
+
+##### Coupes modérées
+&lt;img src="index_files/figure-html/steady_state12-1.png" width="756" style="display: block; margin: auto;" /&gt;
+
+---
+## Déplacement de l'écotone à l'équilibre
+
+##### Coupes majeures
+&lt;img src="index_files/figure-html/steady_state13-1.png" width="756" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+## Implications...
+
+&gt; Alors... 
+&gt; &lt;br&gt;
+&gt; Devrions-nous abattre des arbres pour accélérer les transitions forestières ?
+
+.center[
+![:scale 80%](images/aerial_view_log.png)
+]
+
+---
+## Processus démographiques
+
+.center[
+![:scale 80%](images/fig_demo_trans.png)
+]
+
+---
+## Processus démographiques
+
+.center[
+![:scale 80%](images/fig_demo_trans2.png)
+]
+
+---
+class: inverse, center, middle
+
+# Chapitre 3 
+
+### Recrutement des espèces tempérées
+
+#### ![:faic](hourglass-1)
+
+---
+## Modèle de recrutement
+
+Modèle en deux parties (Hurdle) :
+
+- un processus pour les comptages de zéros 
+
+- un processus pour les comptages positifs
+
+Autre possibilité Zero-inflated: 
+- fait une distinction entre les différents types de zéros (faux zéros vs vrais zéros)
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="720" style="display: block; margin: auto;" /&gt;
+
+---
+## Modèle de recrutement - réponse
+
+Recrues
+- Dénombrement des gaulis de classe 1 à 3 cm de dhp.
+- Potentiellement dénombrement des recrues de &gt; 9cm de dhp.
+
+Entre chaque inventaire consécutif.
+
+&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="475.2" style="display: block; margin: auto;" /&gt;
+
+---
+## Modèle de recrutement - prédicteurs
+
+Le recrutement peut dépendre de:
+
+.small[
+**Climat**
+
+&gt; ![:faic](thermometer-full) Changement de température de la saison de croissance entre 1950 et 2018
+
+&gt; ![:scale 1.1em](images/cloud.svg) Changement de l'Indice d'humidité climatique (CMI) entre 1950 et 2018
+
+**Perturbations**
+
+&gt; ![:scale 1.1em](images/fire.svg) Perturbations naturelles entre `\(t_{i-1}\)` et `\(t_{i}\)`
+
+&gt; ![:scale 1.2em](images/stump.svg) Coupes entre `\(t_{i-1}\)` et `\(t_{i}\)` 
+
+&gt; ![:faic](lightbulb-o) &lt;span style="color:grey"&gt;Types détaillés de coupes et de perturbations naturelles&lt;/span&gt;
+
+**Local**
+
+&gt; ![:scale 1.1em](images/soil.svg) pH du sol
+
+&gt; ![:faic](tint) Drainage du sol
+
+&gt; ![:faic](tree) Présence ou abondance d'individus matures dans la placette
+
+&gt; ![:faic](lightbulb-o) &lt;span style="color:grey"&gt;Présence d'individus dans le voisinnage&lt;/span&gt; 
+]
+
+---
+## Résultats préliminaires
+
+&lt;br&gt;
+
+**Tendances temporelles de recrutement d'*Acer rubrum***
+
+&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="720" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Résultats préliminaires
+
+&lt;br&gt;
+**Recrutement d'*Acer rubrum* dans la région 4 ouest**
+&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /&gt;
+
+---
+## Résultats préliminaires
+
+&lt;br&gt;
+**Tendances temporelles de recrutement de *Fagus grandifolia***
+&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="720" style="display: block; margin: auto;" /&gt;
+
+---
+## Résultats préliminaires
+
+&lt;br&gt;
+**Recrutement de *Fagus grandifolia* dans la région 3 est**
+&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, center, middle
+
+# Fin!
+
+---
+## États alternatifs stables
+
+***Sans*** changements climatiques
+
+&lt;br&gt;
+
+.center[
+![:scale 80%](images/ballncup1.png)
+]
+
+---
+## États alternatifs stables
+
+***Avec*** changements climatiques
+
+&lt;br&gt;
+
+.center[
+![:scale 80%](images/ballncup2.png)
+]
+
+
+
+
+---
+## Résultats du modèle msm
+
+&lt;img src="index_files/figure-html/coef-1.png" width="684" style="display: block; margin: auto;" /&gt;
+
+---
+## Proportion potentielle à l'équilibre
+
+&lt;br&gt;
+
+
+&lt;br&gt;
+&lt;img src="index_files/figure-html/barplot4-1.png" width="662.4" style="display: block; margin: auto;" /&gt;
+ 
+---
+## Dynamique transitoire
+
+
+
+Temps de séjour ![:faic](arrow-right) turnover; temps passé dans un état avant de faire une transition
+
+Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équilibre
+
+
+&lt;img src="index_files/figure-html/barplot_tr2-1.png" width="792" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Conclusions du chapitre 2
+
+.image-holder[ ![:scale 1.2em](images/one.svg) Tendances de la dynamique de transition ]
+
+&gt; .alert[Forte régénération des forêts boréales en réponse aux perturbations des années 70.]
+
+&gt; .alert[Conversion de peuplements mixtes en peuplements tempérés potentiellement en réponse au changement climatique.]
+
+.image-holder[ ![:scale 1.2em](images/two.svg) Influence des perturbations sur les probabilités de transition ]
+
+&gt; .alert[Les perturbations modérées, pas majeures, favorisent les transitions Mixte-Tempéré.]
+
+.image-holder[ ![:scale 1.2em](images/three.svg) Influence des perturbations sur l'équilibre et la dynamique transitoire]
+
+&gt; .alert[Les perturbations modérées, pas majeures, tendent à faire augmenter la proportion de Tempéré à l'équilibre, déplaçant l'écotone vers le nord.]
+
+&gt; .alert[Les perturbations modérées, pas majeures, accélèrent la dynamique transitoire.]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="mytemplate-macros.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

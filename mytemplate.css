@@ -1,0 +1,281 @@
+.remark-code-line-highlighted {
+  background-color: #ffdd55;
+}
+
+.remark-slide-content {
+  background-image: url("images/background_slide3.png");
+  background-size: cover;
+  padding: .2em;
+  margin: .15em;
+  font-size: 23px;
+  color: #404940;
+}
+
+
+
+.remark-slide-number {
+  font-size: 12pt;
+  margin-bottom: -11.6px;
+  margin-right: 10px;
+  color: #404940;
+  opacity: 0.6; /* default: 0.5 */
+}
+
+
+.remark-slide-content p, .remark-slide-content ul, .remark-slide-content ol {
+  margin: .2em 1.5em;
+}
+
+
+ /* Header */
+
+.remark-slide-content h1 {
+  font-size: 48px;
+  border-bottom: 3px solid;
+  margin: 0em .5em;
+  color: #ebedec;
+}
+
+.remark-slide-content h2 {
+  font-size: 42px;
+  margin: 0em .5em;
+  color: #ebedec;
+  padding-bottom: .8em;
+}
+
+.remark-slide-content h3 {
+  font-size: 38px;
+  margin: 0em .6em;
+}
+
+.remark-slide-content h4 {
+  font-size: 32px;
+  margin: 0em .8em;
+}
+
+.remark-slide-content h5 {
+  font-size: 26px;
+  margin: 0em 1em;
+}
+
+
+.remark-slide-content h6 {
+  font-size: 24px;
+  margin: 0em 1em;
+}
+
+/* Code */
+a, a > code {
+  color: #9AB384;
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+
+.remark-code {
+    color: #303940;
+    background-color: #f3f3f3;
+    font-size: 85%;
+}
+
+.remark-inline-code {
+    color: #303940;
+    background-color: #f3f3f3;
+    font-size: 90%;
+}
+
+.remark-code-line, p {
+  margin: .2em .2em;
+}
+
+/* MathJax */
+.mjx-chtml{
+  font-size: 100% !important;
+  background-color: white;
+}
+
+
+/* special text */
+.alert {
+  color: #c7254e;
+}
+
+.comment {
+  color: #645193;
+}
+
+
+.huge {
+  font-size: 2em;
+}
+
+.large {
+  font-size: 1.5em;
+}
+
+.small {
+  font-size: .9em;
+}
+
+.tiny {
+  font-size: .6em;
+}
+
+.footnote {
+  position: absolute;
+  bottom: 2.5em;
+  padding-right: 4em;
+  font-size: 70%;
+}
+
+
+
+/* Column */
+
+.pull-left {
+  float: left;
+  width: 49%;
+  padding-left: 10px;
+}
+.pull-right {
+  float: right;
+  width: 49%;
+}
+
+.pull-left2 {
+  float: left;
+  width: 67%;
+}
+.pull-right2 {
+  float: right;
+  width: 27%;
+}
+
+.image-holder {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.image-holder img {
+  vertical-align: middle;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Blockquote */
+.remark-slide-content blockquote {
+  font-size: 1em;
+  padding-left: 0em;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  /*background: #f9f9f9;*/
+}
+
+
+/* Inverted slide */
+
+.inverse {
+  background-image: url("images/background_inverse.png");
+  color: #f3f3f3;
+}
+
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #f3f3f3;
+}
+
+
+/* Table */
+
+table {
+  margin: auto;
+  font-size: 90%;
+  border: 0px solid #B6B5B5;
+}
+
+table, td, th {
+  border-collapse: collapse;
+  width: auto;
+  padding: 5px 30px;
+  text-align: left;
+  background-color: transparent;
+}
+th {background-color:white;}
+tr:nth-child(even){background-color: transparent;}
+
+.shrink {
+  margin: auto;
+  width: 90%;
+}
+
+.enlarge {
+  margin: auto;
+  width: 110%;
+}
+
+
+
+/* for title page with logo and QCBS background*/
+.title-slide {
+  background-image: url("images/background_slide1.png");
+  background-size: cover;
+  background-color: white;
+  border: none;
+}
+
+.title-slide h1 {
+  text-align: justify;
+  text-shadow: none;
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #404940;
+  position: absolute;
+  bottom: 180px;
+  right: 35px;
+  left: 10px;
+  border-bottom: none;
+}
+
+.title-slide h2 {
+  text-align: justify;
+  text-shadow: none;
+  font-size: 1.2em;
+  font-weight: normal;
+  color: #404940;
+  position: absolute;
+  bottom: 110px;
+  left: 20px;
+}
+
+.title-slide h3 {
+  text-align: justify;
+  text-shadow: none;
+  font-weight: normal;
+  font-size: 1em;
+  color: #404940;
+  position: absolute;
+  bottom:50px;
+  left: 20px;
+}
+
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+
+/* help style */
+
+.remark-help-content h1 {
+    color: #fff;
+}
+
+.remark-help {
+    color: #fff;
+}
+
+.remark-help tr:nth-child(even) {
+  background-color: #999;
+}
