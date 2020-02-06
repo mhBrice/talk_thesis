@@ -61,19 +61,6 @@ covar_log <- list(mixed_mean,
 
 ```
 
-
-## Déplacement des niches climatiques
-
-Future enveloppe climatique de l'Érable à sucre (2071-2100)
-
-.center[
-![:scale 60%](images/mckenney_maple.gif)
-]
-
-.footnote[McKenney et al. 2007. BioScience.]
-
-
----
 ## Contraintes à la migration
 
 - Démographie lente
@@ -122,26 +109,11 @@ Future enveloppe climatique de l'Érable à sucre (2071-2100)
 
 
 ---
-## Hypothèses
-
-.center[
-![:scale 80%](images/hypo1.png)
-]
---
-.center[
-![:scale 80%](images/hypo2.png)
-]
---
-.center[
-![:scale 80%](images/hypo3.png)
-]
-
----
 ## Données des inventaires forestiers
 
 Inventaires forestiers du Québec Méridional 	
-  - 12000+ parcelles permanentes échantillonnées durant 5 grands inventaires entre 1970 et 2018 (par le MFFPQ)
-  - Sélection de 11058 parcelles inventoriées au moins 2 fois chacune
+  - 12000+ placettes-échantillon permanentes échantillonnées durant 5 grands inventaires entre 1970 et 2018 (par le MFFPQ)
+  - Sélection de 11058 placettes inventoriées au moins 2 fois chacune
 
 
 .center[
@@ -242,6 +214,8 @@ class: inverse, center, middle
 .center[
 ![:scale 100%](images/tableau.png)
 ]
+
+
 ---
 ## Modèle
 
@@ -546,38 +520,10 @@ class: inverse, center, middle
 #### ![:faic](hourglass-1)
 
 ---
-## Modèle de recrutement
-
-Modèle en deux parties (Hurdle) :
-
-- un processus pour les comptages de zéros 
-
-- un processus pour les comptages positifs
-
-Autre possibilité Zero-inflated: 
-- fait une distinction entre les différents types de zéros (faux zéros vs vrais zéros)
-```{r, fig.width=10, fig.height=4.5}
-sap_trans <- readRDS("data/sap_trans_env.RDS")
-source("data/plot_coef.R")
-
-sap_trans2 <- filter(sap_trans, ecoreg3 == "Mixed")
-par(mfrow=c(1,2), mar = c(1.5,4,2,.5), oma = c(2, 0, 0, 0))
-plot(density(sap_trans2$ACERUB), xlim = c(0, 30), ylim = c(0, 1.2), lwd = 2, col = "red3",
-     las = 1, main = "Acer rubrum",
-     ylab = "Densité", xlab = "", font.lab = 2,
-     cex.axis = .8)
-plot(density(sap_trans2$ACESAC), xlim = c(0, 30), ylim = c(0, 1.2), lwd = 2, col = "red3",
-     las = 1, main = "Acer saccharum",
-     ylab = "", xlab = "",
-     cex.axis = .8)
-mtext("Nombre de recrues dans la sapinière à bouleau jaune", 1, outer = T, line = 1, adj = .55, font = 2)
-
-```
-
----
-## Modèle de recrutement - réponse
+## Données de recrutement
 
 Recrues
+- 4 espèces: Acer rubrum, Acer saccharum, Fagus grandifolia, Betula Alleghaniensis
 - Dénombrement des gaulis de classe 1 à 3 cm de dhp.
 - Potentiellement dénombrement des recrues de > 9cm de dhp.
 
@@ -613,6 +559,37 @@ textplain(pos[1, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 textplain(pos[2, ] + c(0.1, .4), lab = "n recrues", cex = 1.3)
 textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 ```
+
+
+---
+## Modèle de recrutement
+
+Modèle en deux parties (Hurdle) :
+
+- un processus pour les comptages de zéros 
+
+- un processus pour les comptages positifs
+
+Autre possibilité Zero-inflated: 
+- fait une distinction entre les différents types de zéros (faux zéros vs vrais zéros)
+```{r, fig.width=10, fig.height=4.5}
+sap_trans <- readRDS("data/sap_trans_env.RDS")
+source("data/plot_coef.R")
+
+sap_trans2 <- filter(sap_trans, ecoreg3 == "Mixed")
+par(mfrow=c(1,2), mar = c(1.5,4,2,.5), oma = c(2, 0, 0, 0))
+plot(density(sap_trans2$ACERUB), xlim = c(0, 30), ylim = c(0, 1.2), lwd = 2, col = "red3",
+     las = 1, main = "Acer rubrum",
+     ylab = "Densité", xlab = "", font.lab = 2,
+     cex.axis = .8)
+plot(density(sap_trans2$ACESAC), xlim = c(0, 30), ylim = c(0, 1.2), lwd = 2, col = "red3",
+     las = 1, main = "Acer saccharum",
+     ylab = "", xlab = "",
+     cex.axis = .8)
+mtext("Nombre de recrues dans la sapinière à bouleau jaune", 1, outer = T, line = 1, adj = .55, font = 2)
+
+```
+
 
 ---
 ## Modèle de recrutement - prédicteurs
@@ -925,21 +902,3 @@ barplot_halflife(index = halflife, bars = 1:3, ylim = c(0, 850))
 ```
 
 
----
-## Conclusions du chapitre 2
-
-.image-holder[ ![:scale 1.2em](images/one.svg) Tendances de la dynamique de transition ]
-
-> .alert[Forte régénération des forêts boréales en réponse aux perturbations des années 70.]
-
-> .alert[Conversion de peuplements mixtes en peuplements tempérés potentiellement en réponse au changement climatique.]
-
-.image-holder[ ![:scale 1.2em](images/two.svg) Influence des perturbations sur les probabilités de transition ]
-
-> .alert[Les perturbations modérées, pas majeures, favorisent les transitions Mixte-Tempéré.]
-
-.image-holder[ ![:scale 1.2em](images/three.svg) Influence des perturbations sur l'équilibre et la dynamique transitoire]
-
-> .alert[Les perturbations modérées, pas majeures, tendent à faire augmenter la proportion de Tempéré à l'équilibre, déplaçant l'écotone vers le nord.]
-
-> .alert[Les perturbations modérées, pas majeures, accélèrent la dynamique transitoire.]
