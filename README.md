@@ -1,11 +1,11 @@
 # Présentation :
 
-## [Contraintes et moteurs des changements dans les forêts du Québec](https://mhbrice.github.io/talk_transition/index.html#1)  
+## [Contraintes et moteurs des changements dans les forêts du Québec](https://mhbrice.github.io/talk_thesis/index.html#1)  
 
 
 Ce répertoire contient les diapos pour:
 
-- **Version en cours** : Présentation préparée pour la rencontre à la DRF. 6 février 2020.
+- **Version en cours** : Soutenance de thèse. 09/2020
 
 
 

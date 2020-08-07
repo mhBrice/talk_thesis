@@ -1,7 +1,7 @@
 ---
-title: "Contraintes et moteurs des changements dans les forêts du Québec"
+title: "Dynamique spatio-temporelle des forêts dans l'écotone boréal-tempéré en réponse aux changements globaux"
 subtitle: "Marie-Hélène Brice"
-author: Pierre Legendre, Marie-Josée Fortin <br/> [<i class="fa fa-github" aria-hidden="true"></i> github.com/mhBrice/talk_transition](https://github.com/mhBrice/talk_transition)
+author: 'Superviseurs: Pierre Legendre, Marie-Josée Fortin <br/> [<i class="fa fa-github" aria-hidden="true"></i> github.com/mhBrice/talk_thesis](https://github.com/mhBrice/talk_thesis)'
 
 
 output:
@@ -33,34 +33,54 @@ knitr::opts_chunk$set(
 library(graphicsutils)
 library(diagram)
 library(dplyr)
-library(msm)
 library(latex2exp)
 library(scales)
-library(countreg)
 library(performance)
 library(graphicsutils)
+library(countreg)
+library(sf)
 source("funs.R")
 ```
 
-```{r data, include = FALSE}
-msm_glb <- readRDS("data/msm_glb.RDS")
-states_ba <- readRDS("data/states_envba.RDS") 
 
 
-env_sc <- scale(states_ba[,c("sTP", "sCMI", "DRAIN", "PH_HUMUS")])
+## Changement climatique
 
-states <- c("Boréal", "Mixte", "Pionnier", "Tempéré")
+<br><br>
 
-st_col <- c("#158282", "#A1BD93", "#FEAC19", "#D43650")
+.center[
+![:scale 45%](images/intro_AR5_Figure_1.1a.png) ![:scale 45%](images/intro_AR5_Figure_1.1b.png)
+]
 
-ll_mixed <- which(states_ba$ecoreg3=="Mixed")
-mixed_mean <- as.list(apply(env_sc[ll_mixed,], 2, mean))
-covar_log <- list(mixed_mean,
-                  c(logging1 = 1, mixed_mean),
-                  c(logging2 = 1, mixed_mean))
 
-```
+.footnote[IPCC Fifth Assessment Report. 2014]
 
+---
+## Changement climatique
+
+.pull-left3[
+<br>
+![](images/intro_carte_cc.png)
+]
+.pull-right3[
+<br><br>
+![](images/intro_clim_trend.png)
+]
+ 
+
+
+---
+## Déplacement des niches climatiques
+
+Future enveloppe climatique de l'Érable à sucre (2071-2100)
+
+.center[
+![:scale 60%](images/intro_mckenney_maple.gif)
+]
+
+.footnote[McKenney et al. 2007. BioScience.]
+
+---
 ## Contraintes à la migration
 
 - Démographie lente
@@ -69,7 +89,7 @@ covar_log <- list(mixed_mean,
 - Compétition interspécifique
 
 
-.center[![:scale 87%](images/niche_vs_tree.png)]
+.center[![:scale 87%](images/intro_niche_vs_tree.png)]
 
 ---
 ## États alternatifs stables
@@ -77,7 +97,7 @@ covar_log <- list(mixed_mean,
 <br>
 
 .center[
-![](images/etat_alternatif.png)]
+![](images/intro_etat_alternatif.png)]
 
 .footnote[Johnstone et al. 2016. Frontiers in Ecology and the Environment.]
 
@@ -89,7 +109,7 @@ covar_log <- list(mixed_mean,
 
 <br>
 
-> **Chapitre** .image-holder[ ![:scale 1.2em](images/one.svg) Changements de composition des forêts avec la diversité ß temporelle et un indice de thermophilization. ]
+> **Chapitre** .image-holder[ ![:scale 1.2em](images/one.svg) Changements de composition des forêts avec la diversité ß temporelle et un indice de thermophilisation. ]
 >
 > **Chapitre** .image-holder[ ![:scale 1.2em](images/two.svg) Dynamique de transition des forêts en 4 états. ]
 >
@@ -99,26 +119,67 @@ covar_log <- list(mixed_mean,
 <br>
 
 .center[.image-holder[
-![:scale 230px](images/mixed.jpg)
+![:scale 230px](images/foret_mixte.jpg)
 ![:scale 40px](images/right-arrow.svg)
-![:scale 230px](images/pioneer.jpg)
+![:scale 230px](images/coupe-foret-haute-mauricie.jpg)
 ![:scale 40px](images/right-arrow.svg)
 ![:scale 230px](images/temperate.jpg)
 ]]
 
+---
+## Hypothèses
 
+.center[
+![:scale 80%](images/hypo1.png)
+]
+--
+.center[
+![:scale 80%](images/hypo2.png)
+]
+--
+.center[
+![:scale 80%](images/hypo3.png)
+]
+
+
+---
+## Les forêts du Québec
+
+
+.pull-left2[ 
+![](images/carte_region.png)
+]
+
+.pull-right2[
+
+![](images/foret_boreale_chibougamau.jpg)
+![](images/foret_jdm.jpg)
+![](images/temperate.jpg)
+]
+
+<!--- Présenter les grands groupes d'arbres
+- Gradient climatique au québec
+- Écotone
+- Perturbation-->
+
+---
+## Les forêts du Québec
+
+![](images/intro_perturbations.png)
 
 ---
 ## Données des inventaires forestiers
 
 Inventaires forestiers du Québec Méridional 	
-  - 12000+ placettes-échantillon permanentes échantillonnées durant 5 grands inventaires entre 1970 et 2018 (par le MFFPQ)
-  - Sélection de 11058 placettes inventoriées au moins 2 fois chacune
+  .small[- 12000+ placettes-échantillon permanentes échantillonnées durant 5 grands inventaires entre 1970 et 2018 (par le MFFPQ)]
 
 
 .center[
-![:scale 80%](images/fig1_region.png)
+![:scale 75%](images/carte_placette.png)
 ]
+
+
+
 
 
 ---
@@ -132,55 +193,96 @@ class: inverse, center, middle
 
 #### ![:faic](hourglass-end)
 
+
+<br><br><br>
+<span style="color: #f3f3f3; background-color:#134f0180;">Brice, M.-H., Cazelles, K., Legendre, P., & Fortin, M.-J. (2019). Disturbances amplify tree community responses to climate change in the temperate–boreal ecotone. Global Ecology and Biogeography, 28(11), 1668–1681. </span>
+
+
+---
+## Diversité ß temporelle
+
+.center[
+![:scale 100%](images/chap1_beta_calcul.png)]
+
+---
+## Diversité ß temporelle
+
+.center[
+![:scale 100%](images/chap1_stack_beta1.png)]
+
+---
+## Diversité ß temporelle
+
+.center[
+![:scale 100%](images/chap1_stack_beta2.png)]
+
+---
+## Diversité ß temporelle
+
+.center[
+![:scale 100%](images/chap1_stack_beta3.png)]
+
+---
+## Moteurs de changements de la diversité
+
+.center[
+![:scale 75%](images/chap1_varpart.png)]
+
+---
+## Moteurs de changements de la diversité
+
+.center[
+![:scale 60%](images/chap1_reg_tbi.png)]
+
+<!--
+DIAPO À FAIRE
+
+- Coupe vs perturbation naturelle
+- Récente vs historique
+- Comment les perturbations influencent les pertes et les gains?
+-->
+
 ---
 ## Thermophilisation des communautés
 
 .center[
-![:scale 60%](images/thermo.png)
+![:scale 60%](images/chap1_thermo.png)
 ]
 
 .footnote[Bertrand et al. 2011]
 
-```{r, eval = F}
-plot0(c(-5,15), c(0,.2))
-seqx <- seq(-5,15,.01)
-lines(seqx, dnorm(seqx, 2, sd=3), col= "royalblue3", lwd = 2)
-text(2, .14, "Espèce adaptée au froid", cex = 1.2, col = "royalblue3", font = 2,
-     adj = 1)
-
-lines(seqx, dnorm(seqx, 5, sd=2.5), col = "purple4", lwd = 2)
-text(2.8, .165, "Espèce moyenne", cex = 1.2, col = "purple4", font = 2)
-
-lines(seqx, dnorm(seqx, 9, sd=2.8), col= "red3", lwd = 2)
-text(9, .15, "Espèce adaptée au chaud", cex = 1.2, col = "red3", font = 2, adj = 0)
-
-axis(2, labels = F)
-axis(1, labels = F)
-mtext("Température annuelle moyenne", 1, line = 2, cex = 2)
-mtext("Probabilité de présence", 2, line = 2, cex = 2)
-```
 
 ---
 ## Thermophilisation des communautés
 
-<br><br>
+- La thermophilisation est généralement positive partout au Québec
+- La thermophilisation est plus grande après perturbations modérées
+
+.center[
+![:scale 70%](images/chap1_thermo_aov.png)
+]
+---
+## Thermophilisation des communautés
+
+<br>
 
 
 .center[
-![:scale 100%](images/thermo_res.png)
+![](images/chap1_thermo_lat.png)
 ]
 
-.footnote[Brice et al. 2019. Global Ecology and Biogeography]
+La thermophilisation est plus fort et s'étend plus au nord dans les communautés modérément perturbées que dans celles qui ont été peu perturbées ou sévérement perturbées
+
+La thermophilisation est liée au processus de succession mais ne peut être expliquée par l'augmentation des espèces pionnières. 
 
 ---
 ## Thermophilisation des communautés
 
 
 .center[
-![:scale 65%](images/thermo_contrib.png)
+![:scale 75%](images/chap1_spcontrib.png)
 ]
 
-.footnote[Brice et al. 2019. Global Ecology and Biogeography]
 
 ---
 class: inverse, center, middle
@@ -192,28 +294,25 @@ class: inverse, center, middle
 
 #### ![:faic](hourglass-half)
 
+
+<br><br><br>
+<span style="color: #f3f3f3; background-color:#134f0180;">Brice, M.-H., Vissault, S., Vieira, W., Gravel, D., Legendre, P., & Fortin, M.-J. (2020). Moderate disturbances accelerate forest transition dynamics under climate change in the temperate–boreal ecotone of eastern North America. Global Change Biology, 26(8), 4418–4435.</span>
+
+
 ---
-## Données des inventaires forestiers
+## Transitions entre 4 états forestiers
 
 .center[
-![:scale 90%](images/diag_trans_pics_fr.png)
+![:scale 90%](images/chap2_diag_trans_pics_fr.png)
 ]
 
 ---
 ## Données des inventaires forestiers
 
 .center[
-![:scale 65%](images/indval_states.png)
+![:scale 65%](images/chap2_indval_states.png)
 ]
 
----
-## Données des inventaires forestiers
-
-<br>
-
-.center[
-![:scale 100%](images/tableau.png)
-]
 
 
 ---
@@ -324,82 +423,9 @@ $$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$
 ---
 ## Transitions observées
 
-```{r trans_diag, fig.width=11.5, fig.height=8}
-trans_nb <- statetable.msm(states_num, plot_id, data = states_ba)
-rownames(trans_nb) <- colnames(trans_nb) <- states
-trans_perc <- t(round(trans_nb/rowSums(trans_nb)*100, 1))
-
-arr_l <- trans_perc/40
-diag(arr_l) <- 0
-col_txt <- as.vector(ifelse(arr_l==0, "white", "black"))
-
-pos.box <- cbind (c(0.5, 0.2, 0.8, 0.5),
-                  c(0.8, 0.5, 0.5, 0.2))
-
-par(mar=c(0,0,0,0))
-pm <- plotmat(trans_perc, pos = pos.box, curve = 0.07, name = states, 
-              lwd = 1.2, relsize = .9,
-              box.cex = 2, cex.txt = 0, txt.col = "white",
-              dtext = .3, txt.font = 2,
-              box.lwd = 0.1, box.type = "rect", shadow.size = 0.005,
-              box.prop = 0.35, box.size = 0.13, box.col = st_col,
-              arr.length = arr_l, arr.width = arr_l,  arr.type ="triangle",
-              arr.lcol = "grey40",
-              arr.lwd = trans_perc*.8, self.cex = .45, self.lwd = diag(trans_perc)*.8,
-              self.shifty = c(.07,0,0,-.07), self.shiftx = c(0,-.14,.14,0))
-pm$arr$TextY[1] <- pm$arr$TextY[1]+.05
-pm$arr$TextY[16] <- pm$arr$TextY[16]-.05
-pm$arr$TextX[5] <- pm$arr$TextX[5]-.01
-pm$arr$TextX[10] <- pm$arr$TextX[10]+.01
-pm$arr$TextX[6] <- pm$arr$TextX[6]-.06
-pm$arr$TextX[7] <- pm$arr$TextX[7]+.03
-pm$arr$TextX[8] <- pm$arr$TextX[8]-.03
-pm$arr$TextX[9] <- pm$arr$TextX[9]+.03
-pm$arr$TextX[11] <- pm$arr$TextX[11]+.06
-text(pm$arr$TextX, pm$arr$TextY, pm$arr$Value, cex = 1.6, col = col_txt)
-```
-
-
-
-```{r trans_flow, fig.width=12, fig.height=7.5, eval = FALSE}
-pos <- coordinates(pos = 4, my = -.4)
-pos1 <- c(.5,.85)
-curv1 <- c(.4,.48,.52,.6)
-curv2 <- c(.2,.4,.6,.8)
-
-par(mfrow = c(2,2))
-for(st in 1:4) {
-  par(mar=c(0,0,0,0.7))
-  openplotmat(main = "")
-  for(i in 1:4) {
-    xspline(x = c(pos1[1], curv1[i], curv2[i], pos[i,1]),
-            y = c(pos1[2]-.02, 0.5, 0.3, pos[i,2]),
-            s = 1, lwd = trans_perc[i,st]/2.5, border = "grey40")
-  }
-
-
-  textrect(mid=pos1, radx = 0.11, rady = 0.07,
-           lab = states[st], cex = 1.6, font = 2,
-           col = "white", box.col = st_col[st], lcol = st_col[st],
-           shadow.size = 0.005)
-  textplain(mid = pos1 + c(0,.1), lab = paste0("n = ", colSums(trans_nb)[st]),
-            cex = 1.3, font = 2)
-
-  for (i in 1:4) {
-    textrect(mid=pos[i,], radx = 0.11, rady = 0.07, lab = states[i],
-             cex = 1.6, font = 2,
-             col = "white", box.col = st_col[i], lcol = st_col[i],
-             shadow.size = 0.005)
-
-    if(i %in% 1:2) l = -.06
-    if(i %in% 3:4) l = .06
-    textplain(mid = pos[i,]+c(l,.1), lab = paste0(trans_perc[i,st], "%"),
-              cex=1.3, font=2, col = "grey25")
-  }
-
-}
-
-```
+.center[
+![](images/chap2_tr_obs.png)
+]
 
 
 
@@ -409,9 +435,9 @@ for(st in 1:4) {
 
 ##### Peu ou pas de coupe
 
-```{r pmat_disturb0, fig.width=10, fig.height=7}
-plot_pmat(mod = msm_glb, covariates = covar_log[[1]])
-```
+.center[
+![:scale 80%](images/chap2_pmat_coupe0.png)
+]
 
 
 ---
@@ -419,96 +445,81 @@ plot_pmat(mod = msm_glb, covariates = covar_log[[1]])
 
 ##### Coupes modérées
 
-```{r pmat_disturb1, fig.width=10, fig.height=7}
-plot_pmat(mod = msm_glb, covariates = covar_log[[2]])
-```
+.center[
+![:scale 80%](images/chap2_pmat_coupe1.png)
+]
 
 ---
 ## Probabilités de transitions
 
 ##### Coupes majeures
 
-```{r pmat_disturb2, fig.width=10, fig.height=7}
-plot_pmat(mod = msm_glb, covariates = covar_log[[3]])
-```
+.center[
+![:scale 80%](images/chap2_pmat_coupe2.png)
+]
 
 
 ---
 ## Déplacement de l'écotone à l'équilibre
-
-```{r prep_SS}
-tp_grad <- seq(-1.9, 1.6, len = 50)
-
-df <- expand.grid(sTP = tp_grad, logging = c(0,1, 2), 
-                  sCMI = mixed_mean[[2]],
-                  DRAIN = mixed_mean[[3]],
-                  PH_HUMUS = mixed_mean[[4]])
-
-
-sc_sTP <- c(attr(scale(states_ba$sTP), "scaled:center"),
-            attr(scale(states_ba$sTP), "scaled:scale"))
-x <- tp_grad * sc_sTP[2] + sc_sTP[1]
-
-tp_mixed <- quantile(states_ba$sTP[states_ba$ecoreg3=="Mixed"], c(.2,.8))
-
-
-qmats <- apply(df, 1, function(x)
-  qmatrix.msm(msm_glb, covariates = as.list(x), ci = "none"))
-
-SS <- apply(qmats, 2, function(x) steady_state(qmat = matrix(x, 4, 4)))
-
-bb <- SS[1,]
-tt <- SS[4,]
-```
 
 
 ##### Peu ou pas de coupe
-```{r steady_state11, fig.width=10.5, fig.height=6.5}
-plot_SS(logging = 0)
-```
+
+.center[
+![](images/chap2_SS_coupe0.png)
+]
 
 ---
 ## Déplacement de l'écotone à l'équilibre
 
 ##### Coupes modérées
-```{r steady_state12, fig.width=10.5, fig.height=6.5}
-plot_SS(logging = 0:1)
-```
+.center[
+![](images/chap2_SS_coupe1.png)
+]
 
 ---
 ## Déplacement de l'écotone à l'équilibre
 
 ##### Coupes majeures
-```{r steady_state13, fig.width=10.5, fig.height=6.5}
-plot_SS(logging = 0:2)
-```
+.center[
+![](images/chap2_SS_coupe2.png)
+]
+
+
+---
+## Proportion potentielle à l'équilibre
+
+<br>
+
+.center[![:scale 70%](images/chap2_SS_bp.png)]
+
+---
+## Dynamique transitoire
+
+Temps de séjour ![:faic](arrow-right) turnover; temps passé dans un état avant de faire une transition
+
+Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équilibre
+
+.center[![:scale 90%](images/chap2_transient.png)]
 
 
 
 ---
-## Implications...
-
-> Alors... 
-> <br>
-> Devrions-nous abattre des arbres pour accélérer les transitions forestières ?
+## Processus démographiques
 
 .center[
-![:scale 80%](images/aerial_view_log.png)
+![:scale 80%](images/chap2_demo_trans.png)
 ]
 
 ---
 ## Processus démographiques
 
 .center[
-![:scale 80%](images/fig_demo_trans.png)
+![:scale 80%](images/chap2_demo_trans2.png)
 ]
 
----
-## Processus démographiques
 
-.center[
-![:scale 80%](images/fig_demo_trans2.png)
-]
+
 
 ---
 class: inverse, center, middle
@@ -519,19 +530,112 @@ class: inverse, center, middle
 
 #### ![:faic](hourglass-1)
 
+<br><br><br>
+<span style="color: #f3f3f3; background-color:#134f0180;">Brice, M.-H., Chalumeau, A., Grondin, P., Fortin, M.-J. & Legendre, P. (Soumis). Northern range shifts of temperate tree saplings in Québec: the role of climate, stand composition, soils and disturbances on recruitment dynamics.</span>
+
+
 ---
-## Données de recrutement
+## Recrutement
 
-Recrues
-- 4 espèces: Acer rubrum, Acer saccharum, Fagus grandifolia, Betula Alleghaniensis
-- Dénombrement des gaulis de classe 1 à 3 cm de dhp.
-- Potentiellement dénombrement des recrues de > 9cm de dhp.
+.alert[DIAPO À FAIRE]
 
-Entre chaque inventaire consécutif.
+La migration des arbres dépend du succès de recrutement dans de nouveaux sites au-delà des limites de de distribution actuelle des espèce.
+
+Gaulis = jeunes arbres entre 1 et 9 cm de diamètre
+
+---
+## Recrutement
+
+.center[
+![](images/chap3_maps.png)
+]
+---
+## Déplacement des gaulis vers le nord
+
+.center[
+![](images/chap3_shift_50.png)
+]
+
+---
+## Déplacement des gaulis vers le nord
+
+.center[
+![](images/chap3_shift_90.png)
+]
+
+---
+## Déplacement des gaulis vers le nord
+
+Peu ou pas de coupe
 
 <br>
 
-```{r, fig.width=6.6, fig.height=3.3}
+.center[
+![](images/chap3_lat_coupe01.png)
+]
+
+---
+## Déplacement des gaulis vers le nord
+
+#### Peu ou pas de coupe
+
+<br>
+
+.center[![](images/chap3_lat_coupe02.png)]
+
+Migration d'environs 20-30 km vers le nord pour .alert[3 espèces] tempérées
+
+---
+## Déplacement des gaulis vers le nord
+
+#### Coupe modérée
+
+<br>
+
+![](images/chap3_lat_coupe1.png)
+
+Migration d'environs 10-20 km vers le nord pour .alert[2 espèces] tempérées
+
+
+---
+## Déplacement des gaulis vers le nord
+
+#### Coupe majeure
+
+<br>
+
+![](images/chap3_lat_coupe2.png)
+
+Pas de migration.
+
+
+
+
+
+---
+## Quels facteurs influencent le recrutement?
+
+
+Modèle en deux parties (Hurdle) :
+
+- un processus pour les comptages de zéros 
+  - Présence-absence de gaulis
+
+- <span style="color: #959c95;">un processus pour les comptages positifs </span>
+  - <span style="color: #959c95;">Abondance de gaulis</span>
+
+
+<div style = "position: absolute; top:120px; left:60%"> 
+![:scale 90%](images/chap3_recrue_hist.png)
+</div>
+
+
+
+
+
+<br><br><br>
+
+```{r, fig.width=6.6, fig.height=3.2}
 pos <- coordinates(pos = 4)
 pos[,1] <- pos[,1] + c(-.015,0.025,-.01,0)
 labs <- c(expression(bold('t'[0])),
@@ -554,7 +658,7 @@ for (i in 1:3) {
 straightarrow(from = pos[1, ] - c(0, .22), to = pos[4, ] - c(0, .22),
               arr.type = "triangle", arr.pos = 1, lwd = 15, lcol ="grey60", arr.col ="grey60",
               arr.length=.7, arr.width=.7)
-textplain(pos[4, ] - c(0, .35), lab = "Time", cex = 2)
+textplain(pos[4, ] - c(0, .35), lab = "Temps", cex = 2)
 textplain(pos[1, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 textplain(pos[2, ] + c(0.1, .4), lab = "n recrues", cex = 1.3)
 textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
@@ -562,233 +666,96 @@ textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 
 
 ---
-## Modèle de recrutement
-
-Modèle en deux parties (Hurdle) :
-
-- un processus pour les comptages de zéros 
-
-- un processus pour les comptages positifs
-
-Autre possibilité Zero-inflated: 
-- fait une distinction entre les différents types de zéros (faux zéros vs vrais zéros)
-```{r, fig.width=10, fig.height=4.5}
-sap_trans <- readRDS("data/sap_trans_env.RDS")
-source("data/plot_coef.R")
-
-sap_trans2 <- filter(sap_trans, ecoreg3 == "Mixed")
-par(mfrow=c(1,2), mar = c(1.5,4,2,.5), oma = c(2, 0, 0, 0))
-plot(density(sap_trans2$ACERUB), xlim = c(0, 30), ylim = c(0, 1.2), lwd = 2, col = "red3",
-     las = 1, main = "Acer rubrum",
-     ylab = "Densité", xlab = "", font.lab = 2,
-     cex.axis = .8)
-plot(density(sap_trans2$ACESAC), xlim = c(0, 30), ylim = c(0, 1.2), lwd = 2, col = "red3",
-     las = 1, main = "Acer saccharum",
-     ylab = "", xlab = "",
-     cex.axis = .8)
-mtext("Nombre de recrues dans la sapinière à bouleau jaune", 1, outer = T, line = 1, adj = .55, font = 2)
-
-```
-
-
----
-## Modèle de recrutement - prédicteurs
-
-Le recrutement peut dépendre de:
+## Quels facteurs influencent le recrutement?
 
 .small[
 **Climat**
 
-> ![:faic](thermometer-full) Changement de température de la saison de croissance entre 1950 et 2018
+> ![:faic](thermometer-full) Température de la saison de croissance et changement entre 1950 et 2018
 
-> ![:scale 1.1em](images/cloud.svg) Changement de l'Indice d'humidité climatique (CMI) entre 1950 et 2018
+> ![:scale 1.1em](images/cloud.svg) Indice d'humidité climatique (CMI) et changement entre 1950 et 2018
 
-**Perturbations**
 
-> ![:scale 1.1em](images/fire.svg) Perturbations naturelles entre $t_{i-1}$ et $t_{i}$
-
-> ![:scale 1.2em](images/stump.svg) Coupes entre $t_{i-1}$ et $t_{i}$ 
-
-> ![:faic](lightbulb-o) <span style="color:grey">Types détaillés de coupes et de perturbations naturelles</span>
-
-**Local**
+**Conditions topo-édaphiques**
 
 > ![:scale 1.1em](images/soil.svg) pH du sol
 
 > ![:faic](tint) Drainage du sol
 
-> ![:faic](tree) Présence ou abondance d'individus matures dans la placette
+> ![:scale 1.1em](images/mountain.svg) Position sur la pente
 
-> ![:faic](lightbulb-o) <span style="color:grey">Présence d'individus dans le voisinnage</span> 
+**Conditions biotiques**
+
+> ![:scale 1.1em](images/feuillu.svg) Abondance d'individus de la même espèce dans la placette et dans le voisinage
+
+> ![:faic](tree) Abondance d'espèces boréales dans la placette
+
+**Perturbations**
+
+> ![:scale 1.2em](images/stump.svg) Coupes entre $t_{i-1}$ et $t_{i}$ 
+
+> ![:scale 1.1em](images/fire.svg) Perturbations naturelles entre $t_{i-1}$ et $t_{i}$
+
+> ![:faic](hourglass) Âge du peuplement
+
 ]
 
 ---
-## Résultats préliminaires
+## Quels facteurs influencent le recrutement?
 
-<br>
+Présence-absence de gaulis
 
-**Tendances temporelles de recrutement d'*Acer rubrum***
-
-<br>
-
-```{r, fig.width=10}
-recru_4est <- filter(sap_trans, ecoreg11 == "4est")
-recru_4ouest <- filter(sap_trans, ecoreg11 == "4ouest")
-
-m_4est <- hurdle(ACERUB ~  ACERUB_PA*year1 + 
-                   offset(log(time_interv)) ,
-                 dist = "negbin",
-                 data = recru_4est)
-m_4ouest <- hurdle(ACERUB ~  ACERUB_PA*year1 + 
-                     offset(log(time_interv)) ,
-                   dist = "negbin",
-                   data = recru_4ouest)
-
-newdata <- data.frame(expand.grid(year1 = 0:48, ACERUB_PA = c(0,1), time_interv = 10))
-
-p_4est <- predict(m_4est, newdata = newdata, type = "response")
-p_4ouest <- predict(m_4ouest, newdata = newdata, type = "response")
-
-par(mfrow=c(1,2), mar = c(1.5,4,2,.5), oma = c(2, 0, 0, 2.5))
-plot0(xlim = c(0,48), ylim = range(p_4est))
-mtext("4est", 3, cex = 1.2, font = 2)
-axis(1, at = seq(0,40,by=10), labels = seq(1970,2010,by=10))
-axis(2, las = 1)
-box2(1:2)
-lines(0:48, p_4est[1:49], col = "red3", lwd = 2)
-lines(0:48, p_4est[50:98], col = "blue3", lwd = 2)
-
-
-mtext("Nombre de recrues moyen", 2, line = 2.5, adj = .55, font = 2, cex = 1.1)
-
-plot0(xlim = c(0,48), ylim = range(p_4ouest))
-mtext("4ouest", 3, cex = 1.2, font = 2)
-axis(1, at = seq(0,40,by=10), labels = seq(1970,2010,by=10))
-axis(2, las = 1)
-box2(1:2)
-lines(0:48, p_4ouest[1:49], col = "red3", lwd = 2)
-lines(0:48, p_4ouest[50:98], col = "blue3", lwd = 2)
-
-text(43, .65, "Absence d'individus matures", col = "red3", xpd = NA)
-text(43, 1.5, "Présence d'individus matures", col = "blue3", xpd = NA)
-
-
-mtext("Temps en années", 1, outer = T, line = 1, adj = .55, font = 2, cex = 1.1)
-```
-
+.center[
+![](images/chap3_hurdleZ.png)
+]
 
 ---
-## Résultats préliminaires
+## Quels facteurs influencent le recrutement?
 
 <br>
-**Recrutement d'*Acer rubrum* dans la région 4 ouest**
-<br>
 
-```{r, fig.width=8}
-sap_trans2 <- filter(sap_trans, ecoreg11 == "4ouest") %>%
-  filter(TYPEHUMUS %in% c("MU" ,"MD" ,"MR"))
-lab <- c("adult", 
-         "logging1", "logging2", "natural1", "natural2", 
-         "moder", "mor", 
-         "∆TP", "∆PP")
+.pull-left[
+#### ![:faic](arrow-circle-up) 
 
+- Température plus chaude
+- Augmentation de l'indice d'humidité (∆CMI)
+- Abondance d'invidus de la même espèce dans la placette et le voisinage
+- Coupe modérée
+]
 
-mhurd0 <- hurdle(ACERUB ~ ACERUB_PA + logging_lag + natural_lag + 
-                   offset(log(time_interv)) |
-                   ACERUB_PA + logging_lag + natural_lag + 
-                   TYPEHUMUS + 
-                   slope_sTP + slope_sCMI + offset(log(time_interv)),
-                 dist = "negbin",
-                 data = sap_trans2)
+.pull-right[
+#### ![:faic](arrow-circle-down) 
 
-par(mar = c(4,6,2,1))
-plot_coef(mhurd0, lab = lab)
-```
+- Bas de pente
+- Sol hydrique
+- Effet prioritaire des espèces boréale dans la placette
 
----
-## Résultats préliminaires
+]
 
-<br>
-**Tendances temporelles de recrutement de *Fagus grandifolia***
-<br>
-
-```{r, fig.width=10}
-recru_3est <- filter(sap_trans, ecoreg11 == "3est")
-recru_3ouest <- filter(sap_trans, ecoreg11 == "3ouest")
-
-m_3est <- hurdle(FAGGRA ~  FAGGRA_PA*year1 + 
-                   offset(log(time_interv)) ,
-                 dist = "negbin",
-                 data = recru_3est)
-m_3ouest <- hurdle(FAGGRA ~  FAGGRA_PA*year1 + 
-                     offset(log(time_interv)) ,
-                   dist = "negbin",
-                   data = recru_3ouest)
-
-newdata <- data.frame(expand.grid(year1 = 0:48, FAGGRA_PA = c(0,1), time_interv = 10))
-
-p_3est <- predict(m_3est, newdata = newdata, type = "response")
-p_3ouest <- predict(m_3ouest, newdata = newdata, type = "response")
-
-par(mfrow=c(1,2), mar = c(1.5,4,2,.5), oma = c(2, 0, 0, 2.5))
-plot0(xlim = c(0,48), ylim = range(p_3est))
-mtext("3est", 3, cex = 1.2, font = 2)
-axis(1, at = seq(0,40,by=10), labels = seq(1970,2010,by=10))
-axis(2, las = 1)
-box2(1:2)
-lines(0:48, p_3est[1:49], col = "red3", lwd = 2)
-lines(0:48, p_3est[50:98], col = "blue3", lwd = 2)
-
-
-mtext("Nombre de recrues moyen", 2, line = 2.5, adj = .55, font = 2, cex = 1.1)
-
-plot0(xlim = c(0,48), ylim = range(p_3ouest))
-mtext("3ouest", 3, cex = 1.2, font = 2)
-axis(1, at = seq(0,40,by=10), labels = seq(1970,2010,by=10))
-axis(2, las = 1)
-box2(1:2)
-lines(0:48, p_3ouest[1:49], col = "red3", lwd = 2)
-lines(0:48, p_3ouest[50:98], col = "blue3", lwd = 2)
-
-text(43, .8, "Absence d'individus matures", col = "red3", xpd = NA)
-text(43, 3, "Présence d'individus matures", col = "blue3", xpd = NA)
-
-
-mtext("Temps en années", 1, outer = T, line = 1, adj = .55, font = 2, cex = 1.1)
-```
-
----
-## Résultats préliminaires
-
-<br>
-**Recrutement de *Fagus grandifolia* dans la région 3 est**
-<br>
-
-```{r, fig.width=8}
-sap_trans2 <- filter(sap_trans, ecoreg11 == "3est") %>%
-  filter(TYPEHUMUS %in% c("MU" ,"MD" ,"MR"))
-lab <- c("adult", 
-         "logging1", "logging2", 
-         "moder", "mor", 
-         "∆TP", "∆PP")
-
-
-mhurd0 <- hurdle(FAGGRA ~ FAGGRA_PA + logging_lag +
-                   offset(log(time_interv)) |
-                   FAGGRA_PA + logging_lag +
-                   TYPEHUMUS + 
-                   slope_sTP + slope_sCMI + offset(log(time_interv)),
-                 dist = "negbin",
-                 data = sap_trans2)
-
-par(mar = c(4,6,2,1))
-plot_coef(mhurd0, lab = lab)
-```
+.alert[DIAPO À ARRANGER]
 
 ---
 class: inverse, center, middle
 
-# Fin!
+# Conclusions et perspectives
+
+---
+## Les perturbations &mdash; catalyseurs de changements
+
+DIAPO À FAIRE
+
+
+```{r test}
+x =data.frame(Incendie = '![:scale 230px](images/conclu_feu_sopfeu.jpg)',
+           "Épidémie" = '![:scale 230px](images/conclu_epidemie_sopfim.png)', 
+           "Coupe" = '![:scale 230px](images/coupe-foret-haute-mauricie.jpg)')
+knitr::kable(x, format = "html", col.names = c("Incendie", "Épidémie d'insecte", "Coupe forestière"))
+
+```
+---
+## Changements des individus aux biomes
+
+.center[![:scale 70%](images/conclu_complex.png)]
 
 ---
 ## États alternatifs stables
@@ -798,7 +765,7 @@ class: inverse, center, middle
 <br>
 
 .center[
-![:scale 80%](images/ballncup1.png)
+![:scale 70%](images/conclu_ballncup1.png)
 ]
 
 ---
@@ -809,96 +776,49 @@ class: inverse, center, middle
 <br>
 
 .center[
-![:scale 80%](images/ballncup2.png)
+![:scale 70%](images/conclu_ballncup2.png)
 ]
 
+---
+## États alternatifs stables
+
+.center[![:scale 70%](images/conclu_state_shift.png)]
+
+Dynamique non linéaire ![:faic](arrow-right) changements rapides, soudains et épisodiques
+
+---
+## Implications pour l'aménagement forestier
+
+> Alors... 
+> <br>
+> Devrions-nous couper des arbres pour accélérer les transitions forestières ?
+
+.center[
+![:scale 80%](images/conclu_aerial_view_log.png)
+]
+
+---
+class: inverse, center, middle
+
+# Fin!
 
 
 
 ---
 ## Résultats du modèle msm
 
-```{r coef, fig.width=9.5, fig.height=7.6}
-plot_risk(msm_glb)
-```
+.center[
+![:scale 75%](images/chap2_msm.png)
+]
+
 
 ---
-## Proportion potentielle à l'équilibre
+## Résultats du modèle de recrutement 
 
-<br>
-```{r prep_barplot, fig.width=8, fig.height=5}
-init <- states_ba %>% filter(ecoreg3 == "Mixed") %>%
-  group_by(ID_PE) %>% 
-  arrange(year_measured) %>% 
-  slice(1) 
-init <- table(init$states_ba)
-init <- init/sum(init)
+Abondance de gaulis
 
-dl <- list(list(mixed_mean, logging1 = 0), 
-           list(mixed_mean, logging1 = 1), 
-           list(mixed_mean, logging2 = 1))
-qmats <- lapply(dl, function(x)
-  qmatrix.msm(msm_glb, covariates = x, ci = "none"))
-
-SS <- lapply(qmats, function(x) steady_state(qmat = x))
-SS <- rbind(init, do.call(rbind, SS))
-
-
-colss <- c("#2c7b8f", "#f1ba53","#E38451", "#b5305d")
-lgd <- c("Proportion initiale réelle", 
-         "Équilibre - Peu ou pas de coupe", 
-         "Équilibre - Coupe modérée", 
-         "Équilibre - Coupe majeure")
-```
-
-<br>
-```{r barplot4, fig.width=9.2, fig.height=6.5}
-barplot_index(index = SS, bars = 1:4, lgd = lgd, colss = colss, ylim = c(0,1),
-              ylab = "Proportion des états")
-```
- 
----
-## Dynamique transitoire
-
-```{r prep_transient}
-qmats <- lapply(covar_log, function(x)
-  qmatrix.msm(msm_glb, covariates = x, ci = "none"))
-
-### Steady state from qmat
-eig <- lapply(qmats, function(x) eigen(t(x)))
-pi <- lapply(eig, function(x) t(x$vectors[,which(abs(x$values) < 1e-12)]))
-steady <- lapply(pi, function(x) x/sum(x))
-steady <- lapply(steady, "colnames<-", states)
-
-### Convergence to steady state - Damping ratio
-lambda <- lapply(eig, function(x) sort(x$values, decreasing = TRUE)[2])
-
-damping <- lapply(lambda, function(x) exp(abs(x)))
-
-### Half life to steady state
-halflife <- lapply(damping, function(x) log(90)/log(x)) 
-
-### Sojourn time = turnover time from Hill
-
-sojs <- lapply(covar_log, function(x)
-  sojourn.msm(msm_glb, covariates = x, ci = "none")[[1]])
-#sojs_contrib <- mapply("*", sojs, steady, SIMPLIFY = FALSE)
-
-halflife <- unlist(halflife)
-sojs <- do.call(rbind, sojs)
-
-```
-
-Temps de séjour ![:faic](arrow-right) turnover; temps passé dans un état avant de faire une transition
-
-Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équilibre
-
-
-```{r barplot_tr2, fig.width=11, fig.height=6.5}
-layout(matrix(c(1,2), 1), widths = c(1,.4))
-barplot_index(index = as.matrix(sojs), bars = 1:3, 
-              ylab = "Temps de séjour (années)", ylim = c(0,200))
-barplot_halflife(index = halflife, bars = 1:3, ylim = c(0, 850))
-```
+.center[
+![](images/chap3_hurdleC.png)
+]
 
 

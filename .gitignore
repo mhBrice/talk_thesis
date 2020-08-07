@@ -1,3 +1,6 @@
+data/
+climateData/
+
 # History files
 .Rhistory
 .Rapp.history
