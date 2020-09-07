@@ -524,7 +524,7 @@ class: inverse, center, middle
 ![](images/chap3_carte.png)
 ]
 
-<br><br>
+<br>
 
 .small[*Gaulis = jeunes arbres avec un diamètre entre 1 et 9 cm*]
 
@@ -828,7 +828,10 @@ Les coupes partielles pourraient
 **Quels sont les compromis entre l’intégrité des écosystèmes, leur capacité à s’adapter aux conditions futures, et les besoins de l’exploitation forestière ?** 
 
 
+---
+## Recherche et aménagement ![:chap](Conclusion)
 
+![](images/conclu_complex2.png)
 
 
 
