@@ -199,13 +199,13 @@ plot_SS <- function(logging=0, lang = "fr") {
   plot0(ylim = c(0,1), xlim = range(x), xaxs = "i", frame.plot = TRUE, yaxs = "i")
   polygon(x = c(tp_mixed, rev(tp_mixed)), y = c(0,0,1,1),
           col = alpha("grey", .2), border = NA)
-  axis(1, cex.axis = .85, tick = F, line = -.3)
+  axis(1, cex.axis = .7, tick = F, line = -.3)
   axis(1, labels = F, tcl = -.3)
-  axis(2, cex.axis = .85, las = 1, tick = F, line = -.3)
+  axis(2, cex.axis = .7, las = 1, tick = F, line = -.3)
   axis(2, labels = F, tcl = -.3)
   
-  mtext(xlab, 1, line = 2, cex = 1, font = 2)
-  mtext(ylab, 2, line = 2.2, cex = 1, font = 2)
+  mtext(xlab, 1, line = 1.8, cex = .9, font = 2)
+  mtext(ylab, 2, line = 2, cex = .9, font = 2)
   
   text(10.7, .94, stB, col = col_bb, cex = 1, font = 2)
   text(13.8, .94, stT, col = col_tt, cex = 1, font = 2)
@@ -228,8 +228,8 @@ plot_SS <- function(logging=0, lang = "fr") {
   plot0()
   legend("left", legend = lgd[1:length(logging)],
          pch = 21, col = "black", pt.bg = col_pts[1:length(logging)], 
-         lty = 1:length(logging), lwd = 2, seg.len = 2.5, x.intersp = .5,
-         cex = 1, pt.cex = 1.2, pt.lwd = 2, xpd = NA, bty = "n")
+         lty = 1:length(logging), lwd = 1.8, seg.len = 2.5, x.intersp = .5,
+         cex = .9, pt.cex = 1.2, pt.lwd = 1.8, xpd = NA, bty = "n")
 }
 
 
@@ -268,7 +268,7 @@ barplot_index <- function(index = NULL, bars = 1:3, ylim = NULL,
   
   lines(index[bars,] ~ bp[bars,], type = "h", lwd = 20, lend = 2, col = colss[bars])
   
-  legend("topleft", legend = lgd[bars], cex = .9,
+  legend("topleft", legend = lgd[bars], cex = 1,
          pt.cex = 0, text.col = colss[bars], text.font = 2, 
          bty = "n", inset = c(.02,0))
 }
@@ -308,7 +308,7 @@ barplot_halflife <- function(index = NULL, ylim = NULL, bars = 1:3,
 ### PLOT RANGE SHIFT ####
 
 plot_shift <- function(lat1, lat2 = NULL, xlim, ylim = NULL, line, br, unit = 1, digit = 1,
-                       inset = c(0,-.2), quant = c(.5, .9), alternative = "less",
+                       inset = c(0,-.17), alternative = "less",
                        main = NULL) {
   
   d1 <- hist(lat1, breaks = br, plot = FALSE)
@@ -320,10 +320,10 @@ plot_shift <- function(lat1, lat2 = NULL, xlim, ylim = NULL, line, br, unit = 1,
   usr = par("usr")
   
   # Quantile
-  q1 <- quantile(lat1, quant)
+  q1 <- quantile(lat1, .5)
   
-  points(x = q1, y = rep(usr[3], length(quant)), 
-         pch = c(21, 24), col = "grey15", bg = alpha("grey15", .2), 
+  points(x = q1, y = usr[3], 
+         pch = 21, col = "grey15", bg = alpha("grey15", .2), 
          cex = 1.2, lwd = 1.5, xpd = NA)
   
   if(!is.null(lat2)) {
@@ -334,29 +334,28 @@ plot_shift <- function(lat1, lat2 = NULL, xlim, ylim = NULL, line, br, unit = 1,
     # Wilcoxon test
     wt <- wilcox.test(lat1, lat2, alternative = alternative)
     
-    q2 <- quantile(lat2, quant)
-    points(x = q2, y = rep(usr[3], length(quant)), 
-           pch = c(21,24), col = "red3", bg = alpha("red3", .1),
+    q2 <- quantile(lat2, .5)
+    points(x = q2, y = usr[3], 
+           pch = 21, col = "red3", bg = alpha("red3", .1),
            cex = 1.2, lwd = 1.5, xpd = NA)
     
     delta <- q2 - q1
     
-    # Statistics
-    lgd <- sapply(c(bquote(Delta[50]==.(myround(delta[1]*unit, digit))~"km"),
-                      bquote(Delta[90]==.(myround(delta[2]*unit, digit))~"km")), as.expression)
+
+    lgd = as.expression(bquote(Delta==.(myround(delta*unit, digit))~"km"))
 
     
-    legend("top", legend = lgd, xjust = 0.5,
+    legend("top", legend = lgd, cex= 1.2, xjust = 0.5,
            col = "transparent",
            bty = "n", inset = inset, xpd = NA)
     
     mtext(gtools::stars.pval(wt$p.value), 
           3, line = -.8, adj = .5, cex = 1.3, font = 2)
     
-    mtext(main, line = 2.4, cex = 1, font = 3)
     
     res <- cbind(wt$statistic, wt$p.value)
   }
+  mtext(main, line = 2, cex = 1.1, font = 4)
   
   abline(v = line, col = alpha("grey75", .5), lwd = .7)
   abline(h = 0, col = "grey65")

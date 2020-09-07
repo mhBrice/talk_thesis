@@ -1,6 +1,6 @@
 # Présentation :
 
-## [Contraintes et moteurs des changements dans les forêts du Québec](https://mhbrice.github.io/talk_thesis/index.html#1)  
+## [Dynamique spatio-temporelle des forêts dans l’écotone boréal-tempéré en réponse aux changements globaux](https://mhbrice.github.io/talk_thesis/index.html#1)  
 
 
 Ce répertoire contient les diapos pour:

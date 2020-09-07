@@ -23,3 +23,10 @@ remark.macros.upper = function () {
   // `this` is the value in the parenthesis, or undefined if left out
   return this.toUpperCase();
 };
+
+
+// Section top right
+remark.macros.chap = function () {
+  // `this` is the value in the parenthesis, or undefined if left out
+  return '<i style="float: right; margin: 8px 0px 5px 55px; font-size:20px;color:#ebedec;">' + this + '</i>';
+};

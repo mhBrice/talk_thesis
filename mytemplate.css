@@ -110,7 +110,7 @@ a, a > code {
 }
 
 .large {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .small {
@@ -176,6 +176,8 @@ a, a > code {
 }
 
 
+
+
 /* Blockquote */
 .remark-slide-content blockquote {
   font-size: 1em;
@@ -203,16 +205,18 @@ a, a > code {
 table {
   margin: auto;
   font-size: 90%;
-  border: 0px solid #B6B5B5;
+  border-collapse: collapse !important;
+  border: none !important;
 }
 
-table, td, th {
-  border-collapse: collapse;
+table, tr, td, th {
   width: auto;
-  padding: 5px 30px;
+  padding: 0;
   text-align: left;
   background-color: transparent;
+  border: none !important;
 }
+
 th {background-color:white;}
 tr:nth-child(even){background-color: transparent;}
 
@@ -226,14 +230,24 @@ tr:nth-child(even){background-color: transparent;}
   width: 110%;
 }
 
+/* Text on image */
+.container {
+  position: absolute;
+}
 
+.bottom-left {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  color: white;
+}
 
-/* for title page with logo and QCBS background*/
+/* for title page*/
 .title-slide {
   background-image: url("images/background_slide1.png");
   background-size: cover;
   background-color: white;
-  border: none;
+  border: none; 
 }
 
 .title-slide h1 {
@@ -290,3 +304,5 @@ tr:nth-child(even){background-color: transparent;}
 .remark-help tr:nth-child(even) {
   background-color: #999;
 }
+
+

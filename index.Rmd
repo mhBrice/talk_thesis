@@ -44,33 +44,36 @@ source("funs.R")
 
 
 
-## Changement climatique
+## Changement climatique ![:chap](Introduction)
 
-<br><br>
+<br>
 
-.center[
-![:scale 45%](images/intro_AR5_Figure_1.1a.png) ![:scale 45%](images/intro_AR5_Figure_1.1b.png)
-]
+```{r}
+x <- data.frame('![:scale 400px](images/intro_AR5_Figure_1.1a.png)',
+           '![:scale 400px](images/intro_AR5_Figure_1.1b.png)')
+knitr::kable(x, format = "html", col.names = NULL)
+```
+
 
 
 .footnote[IPCC Fifth Assessment Report. 2014]
 
 ---
-## Changement climatique
+## Changement climatique ![:chap](Introduction)
 
-.pull-left3[
 <br>
-![](images/intro_carte_cc.png)
-]
-.pull-right3[
-<br><br>
-![](images/intro_clim_trend.png)
-]
- 
 
+```{r}
+x <- data.frame('![:scale 450px](images/intro_carte_cc.png)',
+           '![:scale 350px](images/intro_clim_trend.png)')
+knitr::kable(x, format = "html", col.names = NULL)
+```
+
+ 
+.footnote[Données bioclimatiques de Ressources naturelles Canada https://cfs.nrcan.gc.ca/projects/3/9]
 
 ---
-## Déplacement des niches climatiques
+## Déplacement des niches climatiques ![:chap](Introduction)
 
 Future enveloppe climatique de l'Érable à sucre (2071-2100)
 
@@ -81,9 +84,9 @@ Future enveloppe climatique de l'Érable à sucre (2071-2100)
 .footnote[McKenney et al. 2007. BioScience.]
 
 ---
-## Contraintes à la migration
+## Contraintes à la migration ![:chap](Introduction)
 
-- Démographie lente
+- Longue vie et reproduction tardive
 - Dispersion limitée
 - Hétérogénéité du sol
 - Compétition interspécifique
@@ -92,7 +95,21 @@ Future enveloppe climatique de l'Érable à sucre (2071-2100)
 .center[![:scale 87%](images/intro_niche_vs_tree.png)]
 
 ---
-## États alternatifs stables
+## Et les perturbations? ![:chap](Introduction)
+
+<br>
+
+
+<img src="images/intro_epidemie_sopfim.png" style="position:absolute;top:100px;left:30px; width:350px;">
+
+<img src="images/intro_feu_sopfeu.jpg" style="position:absolute;top:250px;left:250px; width:350px;">
+
+<img src="images/coupe-foret-haute-mauricie.jpg" style="position:absolute;top:400px;left:550px; width:350px;">
+
+
+
+---
+## États alternatifs stables ![:chap](Introduction)
 
 <br>
 
@@ -103,72 +120,37 @@ Future enveloppe climatique de l'Érable à sucre (2071-2100)
 
 
 ---
-## ![:scale 1.1em](images/target.svg)bjectifs de la thèse
+## ![:scale 1.1em](images/target.svg)bjectifs de la thèse ![:chap](Introduction)
 
-**Comprendre et démêler l'influence du climat et des perturbations sur les changements dans les communautés forestières selon 3 points de vue différents : **
-
-<br>
-
-> **Chapitre** .image-holder[ ![:scale 1.2em](images/one.svg) Changements de composition des forêts avec la diversité ß temporelle et un indice de thermophilisation. ]
->
-> **Chapitre** .image-holder[ ![:scale 1.2em](images/two.svg) Dynamique de transition des forêts en 4 états. ]
->
-> **Chapitre** .image-holder[ ![:scale 1.2em](images/three.svg) Recrutement des espèces tempérées à leur limite nord. ]
-
+**Comprendre et quantifier l'influence du climat et des perturbations sur les changements dans les communautés forestières selon 3 points de vue différents : **
 
 <br>
 
-.center[.image-holder[
-![:scale 230px](images/foret_mixte.jpg)
-![:scale 40px](images/right-arrow.svg)
-![:scale 230px](images/coupe-foret-haute-mauricie.jpg)
-![:scale 40px](images/right-arrow.svg)
-![:scale 230px](images/temperate.jpg)
-]]
+![](images/intro_objectifs.png)
+
 
 ---
-## Hypothèses
+## Hypothèses  ![:chap](Introduction)
+
+Dynamique forestière attendue à l'écotone boréal-tempéré sous l'effet...
 
 .center[
-![:scale 80%](images/hypo1.png)
+![:scale 80%](images/intro_hypo1.png)
 ]
 --
 .center[
-![:scale 80%](images/hypo2.png)
+![:scale 80%](images/intro_hypo2.png)
 ]
 --
 .center[
-![:scale 80%](images/hypo3.png)
+![:scale 80%](images/intro_hypo3.png)
 ]
 
 
----
-## Les forêts du Québec
 
-
-.pull-left2[ 
-![](images/carte_region.png)
-]
-
-.pull-right2[
-
-![](images/foret_boreale_chibougamau.jpg)
-![](images/foret_jdm.jpg)
-![](images/temperate.jpg)
-]
-
-<!--- Présenter les grands groupes d'arbres
-- Gradient climatique au québec
-- Écotone
-- Perturbation-->
 
 ---
-## Les forêts du Québec
-
-![](images/intro_perturbations.png)
-
----
-## Données des inventaires forestiers
+## Données des inventaires forestiers ![:chap](Aire d'étude)
 
 Inventaires forestiers du Québec Méridional 	
   .small[- 12000+ placettes-échantillon permanentes échantillonnées durant 5 grands inventaires entre 1970 et 2018 (par le MFFPQ)]
@@ -177,6 +159,40 @@ Inventaires forestiers du Québec Méridional
 .center[
 ![:scale 75%](images/carte_placette.png)
 ]
+
+---
+## Les forêts du Québec ![:chap](Aire d'étude)
+
+
+.pull-left2[ 
+<br>
+![](images/carte_region.png)
+]
+
+.pull-right2[
+<img src="images/foret_boreale_chibougamau.jpg" style="width:230px; border:5px solid #6f739d">
+
+<img src="images/foret_jdm.jpg" style="width:230px; border:5px solid #a7a980">
+
+<img src="images/temperate.jpg" style="width:230px; border:5px solid #be6f67">
+
+]
+
+<!--- Présenter les grands groupes d'arbres
+- Gradient climatique au québec
+- Écotone
+- Perturbation-->
+
+---
+## Les forêts du Québec ![:chap](Aire d'étude)
+
+
+```{r, fig.align='center'}
+library(kableExtra)
+x <- data.frame('![:scale 250px](images/intro_bp_perturb1.png)',
+           '![:scale 600px](images/intro_bp_perturb2.png)')
+knitr::kable(x, format = "html", col.names = NULL) 
+```
 
 
 
@@ -199,61 +215,55 @@ class: inverse, center, middle
 
 
 ---
-## Diversité ß temporelle
+## ![:scale 1.1em](images/target.svg)bjectifs du chapitre 1 ![:chap](Chapitre 1)
 
-.center[
-![:scale 100%](images/chap1_beta_calcul.png)]
+**Quelles sont les contributions relatives du réchauffement climatique et des perturbations aux changements dans la composition des forêts?**
 
----
-## Diversité ß temporelle
+<br>
 
-.center[
-![:scale 100%](images/chap1_stack_beta1.png)]
+> .image-holder[ ![:scale 1.2em](images/one.svg)] Quels sont les principaux moteurs des changements des communautés forestières au cours des dernières décennies?
+>
+> .image-holder[ ![:scale 1.2em](images/two.svg)] Les communautés forestières ont-elles subi une thermophilisation au cours des dernières décennies? 
+>
+>.image-holder[ ![:scale 1.2em](images/three.svg)] Quelles espèces d'arbres contribuent aux changements de composition?
 
----
-## Diversité ß temporelle
-
-.center[
-![:scale 100%](images/chap1_stack_beta2.png)]
 
 ---
-## Diversité ß temporelle
+## Diversité ß temporelle ![:chap](Chapitre 1)
+
+<br>
 
 .center[
-![:scale 100%](images/chap1_stack_beta3.png)]
+![:scale 100%](images/chap1_beta_method.png)]
+
 
 ---
-## Moteurs de changements de la diversité
+## Quels facteurs influencent la diversité ß? ![:chap](Chapitre 1)
 
-.center[
-![:scale 75%](images/chap1_varpart.png)]
 
----
-## Moteurs de changements de la diversité
 
-.center[
-![:scale 60%](images/chap1_reg_tbi.png)]
+```{r, fig.align='center'}
+library(kableExtra)
+x <- data.frame('![:scale 480px](images/chap1_reg_tbi.png)',
+           '![:scale 370px](images/chap1_varpart.png)')
+knitr::kable(x, format = "html", col.names = NULL) 
+```
 
-<!--
-DIAPO À FAIRE
 
-- Coupe vs perturbation naturelle
-- Récente vs historique
-- Comment les perturbations influencent les pertes et les gains?
--->
+
 
 ---
-## Thermophilisation des communautés
+## Thermophilisation des communautés ![:chap](Chapitre 1)
 
 .center[
 ![:scale 60%](images/chap1_thermo.png)
 ]
 
-.footnote[Bertrand et al. 2011]
+.footnote[Schéma inspiré de Bertrand et al. 2011]
 
 
 ---
-## Thermophilisation des communautés
+## Thermophilisation des communautés ![:chap](Chapitre 1)
 
 - La thermophilisation est généralement positive partout au Québec
 - La thermophilisation est plus grande après perturbations modérées
@@ -262,7 +272,7 @@ DIAPO À FAIRE
 ![:scale 70%](images/chap1_thermo_aov.png)
 ]
 ---
-## Thermophilisation des communautés
+## Thermophilisation des communautés ![:chap](Chapitre 1)
 
 <br>
 
@@ -271,18 +281,24 @@ DIAPO À FAIRE
 ![](images/chap1_thermo_lat.png)
 ]
 
-La thermophilisation est plus fort et s'étend plus au nord dans les communautés modérément perturbées que dans celles qui ont été peu perturbées ou sévérement perturbées
+La thermophilisation est plus forte et s'étend plus au nord dans les communautés modérément perturbées que dans celles qui ont été peu perturbées ou sévérement perturbées
 
-La thermophilisation est liée au processus de succession mais ne peut être expliquée par l'augmentation des espèces pionnières. 
+
 
 ---
-## Thermophilisation des communautés
+## Thermophilisation des communautés ![:chap](Chapitre 1)
 
 
 .center[
 ![:scale 75%](images/chap1_spcontrib.png)
 ]
 
+---
+## Message clé ![:chap](Chapitre 1)
+
+<br>
+
+![](images/objectif1.png)
 
 ---
 class: inverse, center, middle
@@ -298,140 +314,53 @@ class: inverse, center, middle
 <br><br><br>
 <span style="color: #f3f3f3; background-color:#134f0180;">Brice, M.-H., Vissault, S., Vieira, W., Gravel, D., Legendre, P., & Fortin, M.-J. (2020). Moderate disturbances accelerate forest transition dynamics under climate change in the temperate–boreal ecotone of eastern North America. Global Change Biology, 26(8), 4418–4435.</span>
 
+---
+## ![:scale 1.1em](images/target.svg)bjectifs du chapitre 2 ![:chap](Chapitre 2)
+
+<br>
+
+**Comprendre les contraintes et les moteurs qui influencent la dynamique de transition des communautés forestières du Québec.**
+
+
+> .image-holder[ ![:scale 1.2em](images/one.svg) Comment les perturbations influencent-elles les probabilités de transition entre les états forestiers ? ]
+>
+> .image-holder[ ![:scale 1.2em](images/two.svg) Quel est l'impact de différentes intensités de perturbation sur l'équilibre potentiel et la dynamique transitoire ? ]
+>
+> .image-holder[ ![:scale 1.2em](images/three.svg) Quelle est l'importance relative des processus démographiques sous-jacents à la dynamique de transition ? ]
 
 ---
-## Transitions entre 4 états forestiers
+## Transitions entre 4 états forestiers ![:chap](Chapitre 2)
 
 .center[
 ![:scale 90%](images/chap2_diag_trans_pics_fr.png)
 ]
 
+
 ---
-## Données des inventaires forestiers
+## Dynamique de transition en 4 états ![:chap](Chapitre 2)
 
 .center[
-![:scale 65%](images/chap2_indval_states.png)
+![:scale 100%](images/chap2_ex_transition.png)
 ]
 
 
-
 ---
-## Modèle
+## Modèle de Markov multi-états ![:chap](Chapitre 2)
 
-##### Modèle de Markov multi-états à temps continu
 
-```{r trans_time, fig.width=6.6, fig.height=3.3}
-pos <- coordinates(pos = 4)
-pos[,1] <- pos[,1] + c(-.015,0.025,-.01,0)
-labs <- c(expression(bold('État'[0])),
-          expression(bold('État'[1])),
-          expression(bold('État'["..."])),
-          expression(bold('État'["n"])))
-curv <- c(-0.6, -0.8, -0.7)
+.small[Nous modélisons la matrice d'intensité **Q** contenant les risques de transition instantanée entre les états (ligne à colonne) en fonction de variables environnementales.]
 
-par(mar=c(0,0,0,0))
-openplotmat(main = "")
-for (i in 1:4) {
-  textellipse(mid=pos[i,], radx = 0.1, lab = labs[i], cex = 2,
-              col = '#404940', shadow.col='#98B283', shadow.size = 0.005)
-  }
-for (i in 1:3) {
-  curvedarrow(from = pos[i, ] + c(.01, .12), to = pos[i+1, ] + c(-.01, .12),
-              curve = curv[i], arr.type = "triangle", arr.length=.4, arr.width=.5,
-              arr.pos = .5, lwd = 4, lcol ="grey40", arr.col ="grey40")}
-
-straightarrow(from = pos[1, ] - c(0, .22), to = pos[4, ] - c(0, .22),
-              arr.type = "triangle", arr.pos = 1, lwd = 15, lcol ="grey60", arr.col ="grey60",
-              arr.length=.7, arr.width=.7)
-textplain(pos[4, ] - c(0, .35), lab = "Temps", cex = 2)
-```
-
-- Processus de Markov: 
-  - Les transitions dépendent de l'état actuel, pas des états antérieurs
-
-- Temps continu: 
-  - Intervalle de temps irrégulier; 
-  - Plusieurs transitions possibles durant un intervalle;
-  - Le moment exact de la transition n'est pas connu
-
----
-## Modèle
-
-##### Modèle de Markov multi-états à temps continu
-
-<br>
-Les transitions entre les états peuvent dépendre de l'environnement:
-
-.left-column[
-<br>
-**Climat**
-
-<br><br>
-
-**Perturbations**
-
-<br><br>
-
-**Sol**
-]
-
-.right-column[
-> ![:faic](thermometer-full) Température de la saison de croissance à $t_{i-1}$
-
-> ![:scale 1.1em](images/cloud.svg) Indice d'humidité climatique (CMI) à $t_{i-1}$ 
-
-<br>
-> ![:scale 1.1em](images/fire.svg) Perturbations naturelles entre $t_{i-1}$ et $t_{i}$
-
-> ![:scale 1.2em](images/stump.svg) Coupes entre $t_{i-1}$ et $t_{i}$
-
-<br>
-> ![:scale 1.1em](images/soil.svg) pH du sol
-
-> ![:faic](tint) Drainage du sol
-
-]
-
----
-## Modèle
-
-###### Matrice d'intensité Q contenant les risques de transition instantanés (ligne à colonne)
-
-```{r qmatrix, fig.height=3, fig.width=5}
-qmat <- c("$-\\sum_{s \\neq B} q_{Bs}$","q_{BM}", "q_{BP}", 0,
-          "q_{MB}", "$-\\sum_{s \\neq M} q_{Ms}$", "q_{MP}", "q_{MT}",
-          "q_{PB}", "q_{PM}", "$-\\sum_{s \\neq P} q_{Ps}$", "q_{PT}",
-          0, "q_{TM}", "q_{TP}", "$-\\sum_{s \\neq T} q_{Ts}$")
-
-par(mar=c(0,0,0,0))
-plot0(xlim = c(0,9), ylim = c(1,9), xpd = NA, yaxs = "i")
-text(.2, 5, expression(paste(bold("Q")," =")), cex = 2, col = '#404940')
-lines(c(1,1), c(1.5,8.5))
-lines(c(9,9), c(1.5,8.5))
-text(rep(c(2,4,6,8),4),rep(c(8,6,4,2),ea=4), TeX(qmat), cex = 1.5, col = '#404940')
-```
-
-<br>
-**Pour les transtions entre tous les états sauf vers Pionnier:**
-
-$$q_{rs} = \textbf{baseline} \times exp(\beta_{c} \times \textbf{climat} + \beta_{p} \times \textbf{perturbation} + \beta_{s} \times \textbf{sol})$$
-
-**Pour les transitions vers Pionnier:**
-
-$$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$$
-
----
-## Transitions observées
 
 .center[
-![](images/chap2_tr_obs.png)
+![:scale 88%](images/chap2_variables.png)
 ]
 
 
 
 
+
 ---
-## Probabilités de transitions
+## Dynamique de transitions ![:chap](Chapitre 2)
 
 ##### Peu ou pas de coupe
 
@@ -441,7 +370,7 @@ $$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$
 
 
 ---
-## Probabilités de transitions
+## Dynamique de transitions ![:chap](Chapitre 2)
 
 ##### Coupes modérées
 
@@ -450,7 +379,7 @@ $$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$
 ]
 
 ---
-## Probabilités de transitions
+## Dynamique de transitions ![:chap](Chapitre 2)
 
 ##### Coupes majeures
 
@@ -458,9 +387,28 @@ $$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$
 ![:scale 80%](images/chap2_pmat_coupe2.png)
 ]
 
+---
+## Dynamique de transitions ![:chap](Chapitre 2)
+
+- Les coupes influencent la dynamique de transition forestière
+
+- Les coupes modérées favorisent les transitions Mixte $\rightarrow$ Tempéré
+
+- Les coupes majeures favorisent les transitions vers Pionnier
+
+<br>
+
+```{r}
+x <- data.frame("Peu ou pas" = '![:scale 300px](images/chap2_pmat_coupe0.png)',
+           "Modérée" = '![:scale 300px](images/chap2_pmat_coupe1.png)',
+           "Majeure" = '![:scale 300px](images/chap2_pmat_coupe2.png)')
+knitr::kable(x, format = "html", col.names = c("Peu ou pas", "Modérée", "Majeure"), 
+             align = "c")
+```
+
 
 ---
-## Déplacement de l'écotone à l'équilibre
+## Déplacement de l'écotone à l'équilibre ![:chap](Chapitre 2)
 
 
 ##### Peu ou pas de coupe
@@ -470,7 +418,7 @@ $$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$
 ]
 
 ---
-## Déplacement de l'écotone à l'équilibre
+## Déplacement de l'écotone à l'équilibre ![:chap](Chapitre 2)
 
 ##### Coupes modérées
 .center[
@@ -478,7 +426,7 @@ $$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$
 ]
 
 ---
-## Déplacement de l'écotone à l'équilibre
+## Déplacement de l'écotone à l'équilibre ![:chap](Chapitre 2)
 
 ##### Coupes majeures
 .center[
@@ -487,32 +435,42 @@ $$q_{rs} = \textbf{baseline} \times exp(\beta_{p} \times \textbf{perturbation})$
 
 
 ---
-## Proportion potentielle à l'équilibre
+## Dynamique transitoire ![:chap](Chapitre 2)
 
-<br>
-
-.center[![:scale 70%](images/chap2_SS_bp.png)]
-
----
-## Dynamique transitoire
-
-Temps de séjour ![:faic](arrow-right) turnover; temps passé dans un état avant de faire une transition
+Temps de séjour ![:faic](arrow-right) temps passé dans un état avant de faire une transition
 
 Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équilibre
 
-.center[![:scale 90%](images/chap2_transient.png)]
+.center[![:scale 95%](images/chap2_transient0.png)]
 
+---
+## Dynamique transitoire ![:chap](Chapitre 2)
+
+Temps de séjour ![:faic](arrow-right) temps passé dans un état avant de faire une transition
+
+Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équilibre
+
+.center[![:scale 95%](images/chap2_transient1.png)]
+
+---
+## Dynamique transitoire ![:chap](Chapitre 2)
+
+Temps de séjour ![:faic](arrow-right) temps passé dans un état avant de faire une transition
+
+Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équilibre
+
+.center[![:scale 95%](images/chap2_transient2.png)]
 
 
 ---
-## Processus démographiques
+## Processus démographiques ![:chap](Chapitre 2)
 
 .center[
 ![:scale 80%](images/chap2_demo_trans.png)
 ]
 
 ---
-## Processus démographiques
+## Processus démographiques ![:chap](Chapitre 2)
 
 .center[
 ![:scale 80%](images/chap2_demo_trans2.png)
@@ -520,6 +478,12 @@ Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équili
 
 
 
+---
+## Message clé ![:chap](Chapitre 2)
+
+<br>
+
+![](images/objectif1-2.png)
 
 ---
 class: inverse, center, middle
@@ -531,42 +495,51 @@ class: inverse, center, middle
 #### ![:faic](hourglass-1)
 
 <br><br><br>
-<span style="color: #f3f3f3; background-color:#134f0180;">Brice, M.-H., Chalumeau, A., Grondin, P., Fortin, M.-J. & Legendre, P. (Soumis). Northern range shifts of temperate tree saplings in Québec: the role of climate, stand composition, soils and disturbances on recruitment dynamics.</span>
+<span style="color: #f3f3f3; background-color:#134f0180;">Brice, M.-H., Chalumeau, A., Grondin, P., Fortin, M.-J. & Legendre, P. (En préparation). Northern range shifts of temperate tree saplings in Québec: the role of climate, stand composition, soils and disturbances on recruitment dynamics.</span>
+
+---
+## ![:scale 1.1em](images/target.svg)bjectifs du chapitre 3 ![:chap](Chapitre 3)
+
+<br>
+
+**Quels facteurs contrôlent le recrutement des espèces tempérées à la marge nord de leur distribution?**
+
+<br>
+
+> .image-holder[ ![:scale 1.2em](images/one.svg)] Est-ce que la distribution des gaulis d'espèces tempérées s'est déplacée vers le nord?
+>
+> .image-holder[ ![:scale 1.2em](images/two.svg)] Comment différentes intensités de perturbations influencent-elles les déplacements vers le nord des gaulis?
+>
+> .image-holder[ ![:scale 1.2em](images/three.svg)] Comment différentes conditions biotiques et abiotiques influencent-elles le recrutement des gaulis à la limite nord de leur distribution?
+
+
 
 
 ---
-## Recrutement
+## Données de recrutement ![:chap](Chapitre 3)
 
-.alert[DIAPO À FAIRE]
-
-La migration des arbres dépend du succès de recrutement dans de nouveaux sites au-delà des limites de de distribution actuelle des espèce.
-
-Gaulis = jeunes arbres entre 1 et 9 cm de diamètre
-
----
-## Recrutement
+<br>
 
 .center[
-![](images/chap3_maps.png)
+![](images/chap3_carte.png)
 ]
+
+<br><br>
+
+.small[*Gaulis = jeunes arbres avec un diamètre entre 1 et 9 cm*]
+
 ---
-## Déplacement des gaulis vers le nord
+## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
 
 .center[
 ![](images/chap3_shift_50.png)
 ]
 
----
-## Déplacement des gaulis vers le nord
-
-.center[
-![](images/chap3_shift_90.png)
-]
 
 ---
-## Déplacement des gaulis vers le nord
+## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
 
-Peu ou pas de coupe
+#### Peu ou pas de coupe
 
 <br>
 
@@ -575,18 +548,18 @@ Peu ou pas de coupe
 ]
 
 ---
-## Déplacement des gaulis vers le nord
+## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
 
 #### Peu ou pas de coupe
 
 <br>
 
-.center[![](images/chap3_lat_coupe02.png)]
+.center[![](images/chap3_lat_coupe0.png)]
 
 Migration d'environs 20-30 km vers le nord pour .alert[3 espèces] tempérées
 
 ---
-## Déplacement des gaulis vers le nord
+## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
 
 #### Coupe modérée
 
@@ -598,7 +571,7 @@ Migration d'environs 10-20 km vers le nord pour .alert[2 espèces] tempérées
 
 
 ---
-## Déplacement des gaulis vers le nord
+## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
 
 #### Coupe majeure
 
@@ -613,16 +586,18 @@ Pas de migration.
 
 
 ---
-## Quels facteurs influencent le recrutement?
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
 
 
 Modèle en deux parties (Hurdle) :
 
 - un processus pour les comptages de zéros 
   - Présence-absence de gaulis
+  - Régression binomiale
 
 - <span style="color: #959c95;">un processus pour les comptages positifs </span>
   - <span style="color: #959c95;">Abondance de gaulis</span>
+  - <span style="color: #959c95;">Régression binomiale négative tronquée</span>
 
 
 <div style = "position: absolute; top:120px; left:60%"> 
@@ -630,10 +605,7 @@ Modèle en deux parties (Hurdle) :
 </div>
 
 
-
-
-
-<br><br><br>
+<br>
 
 ```{r, fig.width=6.6, fig.height=3.2}
 pos <- coordinates(pos = 4)
@@ -658,7 +630,7 @@ for (i in 1:3) {
 straightarrow(from = pos[1, ] - c(0, .22), to = pos[4, ] - c(0, .22),
               arr.type = "triangle", arr.pos = 1, lwd = 15, lcol ="grey60", arr.col ="grey60",
               arr.length=.7, arr.width=.7)
-textplain(pos[4, ] - c(0, .35), lab = "Temps", cex = 2)
+textplain(pos[4, ] - c(0, .35), lab = "Temps", cex = 1.7)
 textplain(pos[1, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 textplain(pos[2, ] + c(0.1, .4), lab = "n recrues", cex = 1.3)
 textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
@@ -666,7 +638,7 @@ textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 
 
 ---
-## Quels facteurs influencent le recrutement?
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
 
 .small[
 **Climat**
@@ -701,66 +673,104 @@ textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 ]
 
 ---
-## Quels facteurs influencent le recrutement?
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
 
-Présence-absence de gaulis
+Modèle de présence-absence de gaulis
+<br>
 
 .center[
 ![](images/chap3_hurdleZ.png)
 ]
 
 ---
-## Quels facteurs influencent le recrutement?
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
+
+
+.center[
+![:scale 32%](images/chap3_schema.png)
+]
+
+.small[
+**Le recrutement des espèces tempérées à leur limite nord est...** 
+
+
+![:faic](arrow-circle-up) favorisé par:
+> la proximité d'arbres de la même espèce pour la dispersion; 
+>
+> les coupes partielles.
+
+
+![:faic](arrow-circle-down) contraint par:
+
+> l'effet inhibiteur prioritaire du couvert en espèces boréales;
+>
+> les sols hydriques dans les bas de pente;
+>
+> les perturbations naturelles.
+]
+
+
+
+
+---
+##  Message clé ![:chap](Chapitre 3)
+
 
 <br>
 
-.pull-left[
-#### ![:faic](arrow-circle-up) 
-
-- Température plus chaude
-- Augmentation de l'indice d'humidité (∆CMI)
-- Abondance d'invidus de la même espèce dans la placette et le voisinage
-- Coupe modérée
-]
-
-.pull-right[
-#### ![:faic](arrow-circle-down) 
-
-- Bas de pente
-- Sol hydrique
-- Effet prioritaire des espèces boréale dans la placette
-
-]
-
-.alert[DIAPO À ARRANGER]
+![](images/objectif1-2-3.png)
 
 ---
 class: inverse, center, middle
 
 # Conclusions et perspectives
 
----
-## Les perturbations &mdash; catalyseurs de changements
-
-DIAPO À FAIRE
 
 
-```{r test}
-x =data.frame(Incendie = '![:scale 230px](images/conclu_feu_sopfeu.jpg)',
-           "Épidémie" = '![:scale 230px](images/conclu_epidemie_sopfim.png)', 
-           "Coupe" = '![:scale 230px](images/coupe-foret-haute-mauricie.jpg)')
-knitr::kable(x, format = "html", col.names = c("Incendie", "Épidémie d'insecte", "Coupe forestière"))
-
-```
----
-## Changements des individus aux biomes
-
-.center[![:scale 70%](images/conclu_complex.png)]
 
 ---
-## États alternatifs stables
+## Les perturbations &mdash; catalyseurs de changements ![:chap](Conclusion)
 
-***Sans*** changements climatiques
+
+
+.center[
+![:scale 80%](images/conclu_turnover.png)
+]
+
+Les perturbations .alert[modérées]:
+
+- Enlèvent une partie de la communauté en place
+- Créent des ouvertures dans la canopée
+- Modifient les conditions locales
+- Permettent le renouvellement de la communauté
+
+---
+## Les perturbations &mdash; catalyseurs de changements ![:chap](Conclusion)
+
+
+
+.center[
+![:scale 80%](images/conclu_turnover.png)
+]
+
+Les perturbations .alert[majeures]:
+
+- Enlèvent toute la communauté en place
+- Créent des ouvertures de très grande superficie
+- Modifient les conditions locales
+- Favorisent la colonisation par les espèces pionnières
+
+---
+## Des changements à travers les échelles ![:chap](Conclusion)
+
+.center[
+![](images/conclu_complex.png)
+]
+
+---
+## États alternatifs stables ![:chap](Conclusion)
+
+***Sans*** changement climatique
 
 <br>
 
@@ -769,9 +779,9 @@ knitr::kable(x, format = "html", col.names = c("Incendie", "Épidémie d'insecte
 ]
 
 ---
-## États alternatifs stables
+## États alternatifs stables ![:chap](Conclusion)
 
-***Avec*** changements climatiques
+***Avec*** changement climatique
 
 <br>
 
@@ -779,33 +789,66 @@ knitr::kable(x, format = "html", col.names = c("Incendie", "Épidémie d'insecte
 ![:scale 70%](images/conclu_ballncup2.png)
 ]
 
----
-## États alternatifs stables
-
-.center[![:scale 70%](images/conclu_state_shift.png)]
-
-Dynamique non linéaire ![:faic](arrow-right) changements rapides, soudains et épisodiques
 
 ---
-## Implications pour l'aménagement forestier
+## Recherche et aménagement ![:chap](Conclusion)
 
-> Alors... 
-> <br>
-> Devrions-nous couper des arbres pour accélérer les transitions forestières ?
+**Devrions-nous couper des arbres pour accélérer les transitions forestières ?**
 
 .center[
-![:scale 80%](images/conclu_aerial_view_log.png)
+![:scale 50%](images/conclu_aerial_view_log.png)
 ]
+
+<br>
+--
+
+Les coupes partielles pourraient 
+
+> ![:faic](arrow-down) le crédit d'extinction des espèces boréales
+>
+> ![:faic](arrow-down) la dette de colonisation des espèces tempérées
+>
+> ![:faic](arrow-down) le déséquilibre entre la distribution actuelles des espèces et le climat
+
+
+---
+## Recherche et aménagement ![:chap](Conclusion)
+
+<br><br>
+
+**Quelles sont les meilleures stratégies d'aménagement pour favoriser la capacité des écosystèmes à s'adapter aux conditions futures ?**
+
+<br>
+
+**Quels sont les effets de la fréquence et de la séquence des perturbations sur la dynamique des forêts ?**
+
+
+<br>
+
+**Quels sont les compromis entre l’intégrité des écosystèmes, leur capacité à s’adapter aux conditions futures, et les besoins de l’exploitation forestière ?** 
+
+
+
+
+
 
 ---
 class: inverse, center, middle
 
-# Fin!
+# Merci!
 
+---
+## Thermophilisation vs succession
+
+<br>
+
+.center[
+![](images/chap1_SM_thermo_lat.png)
+]
 
 
 ---
-## Résultats du modèle msm
+## Résultats du modèle mutli-état
 
 .center[
 ![:scale 75%](images/chap2_msm.png)

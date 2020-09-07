@@ -5,15 +5,12 @@ library(graphicsutils)
 library(diagram)
 library(dplyr)
 library(msm)
-# library(latex2exp)
-# library(scales)
-# library(countreg)
-# library(performance)
+
 
 # library(sf)
 source("funs.R")
 
-
+# Données
 
 load("../transition/res/msm_all75.rda")
 msm_glb <- msm_all75[["msm_glb"]]
@@ -34,11 +31,6 @@ covar_log <- list(mixed_mean,
                   c(logging2 = 1, mixed_mean))
 
 
-# Fonctions R
-
-
-
-# Données
 
 
 ### 1. Diagramme de transition ####
@@ -85,15 +77,15 @@ dev.off()
 
 ### 2. Probabilité de transition vs coupe ####
 
-png("images/chap2_pmat_coupe0.png", width=5, height=3.5, res = 300, units = "in")
+png("images/chap2_pmat_coupe0.png", width=5, height=3.5, res = 300, units = "in", bg = "transparent")
 plot_pmat(mod = msm_glb, covariates = covar_log[[1]])
 dev.off()
 
-png("images/chap2_pmat_coupe1.png", width=5, height=3.5, res = 300, units = "in")
+png("images/chap2_pmat_coupe1.png", width=5, height=3.5, res = 300, units = "in", bg = "transparent")
 plot_pmat(mod = msm_glb, covariates = covar_log[[2]])
 dev.off()
 
-png("images/chap2_pmat_coupe2.png", width=5, height=3.5, res = 300, units = "in")
+png("images/chap2_pmat_coupe2.png", width=5, height=3.5, res = 300, units = "in", bg = "transparent")
 plot_pmat(mod = msm_glb, covariates = covar_log[[3]])
 dev.off()
 
@@ -123,16 +115,25 @@ bb <- SS[1,]
 tt <- SS[4,]
 
 
-png("images/chap2_SS_coupe0.png", width=5.2, height=3, res = 300, units = "in")
+png("images/chap2_SS_coupe0.png", width=5.2, height=3.2, res = 300, units = "in")
+par(oma = c(1,0,0,0))
 plot_SS(logging = 0)
+mtext("Nord", 1, outer = TRUE, adj = .1, cex = .9, font = 4, col = "grey35")
+mtext("Sud", 1, outer = TRUE, adj = .73, cex = .9, font = 4, col = "grey35")
 dev.off()
 
-png("images/chap2_SS_coupe1.png", width=5.2, height=3, res = 300, units = "in")
+png("images/chap2_SS_coupe1.png", width=5.2, height=3.2, res = 300, units = "in")
+par(oma = c(1,0,0,0))
 plot_SS(logging = 0:1)
+mtext("Nord", 1, outer = TRUE, adj = .1, cex = .9, font = 4, col = "grey35")
+mtext("Sud", 1, outer = TRUE, adj = .73, cex = .9, font = 4, col = "grey35")
 dev.off()
 
-png("images/chap2_SS_coupe2.png", width=5.2, height=3, res = 300, units = "in")
+png("images/chap2_SS_coupe2.png", width=5.2, height=3.2, res = 300, units = "in")
+par(oma = c(1,0,0,0))
 plot_SS(logging = 0:2)
+mtext("Nord", 1, outer = TRUE, adj = .1, cex = .9, font = 4, col = "grey35")
+mtext("Sud", 1, outer = TRUE, adj = .73, cex = .9, font = 4, col = "grey35")
 dev.off()
 
 
@@ -174,12 +175,11 @@ barplot_index(index = SS, bars = 1:4, lgd = lgd, colss = colss, ylim = c(0,1),
               ylab = "Proportion des états")
 dev.off()
 
----
+
 ## Dynamique transitoire
   
 
-qmats <- lapply(covar_log, function(x)
-  qmatrix.msm(msm_glb, covariates = x, ci = "none"))
+qmats <- lapply(covar_log, FUN = function(x) qmatrix.msm(msm_glb, covariates = x, ci = "none"))
 
 ### Steady state from qmat
 eig <- lapply(qmats, function(x) eigen(t(x)))
@@ -204,10 +204,52 @@ sojs <- lapply(covar_log, function(x)
 halflife <- unlist(halflife)
 sojs <- do.call(rbind, sojs)
 
+png("images/chap2_transient0.png", width = 7, height = 4, res = 300, units = "in")
+layout(matrix(c(1,2), 1), widths = c(1,.4))
+barplot_index(index = as.matrix(sojs), bars = 1, 
+              ylab = "Temps de séjour (années)", ylim = c(0,200))
+barplot_halflife(index = halflife, bars = 1, ylim = c(0, 850))
+dev.off()
 
-png("images/chap2_transient.png", width = 7, height = 4, res = 300, units = "in")
+
+png("images/chap2_transient1.png", width = 7, height = 4, res = 300, units = "in")
+layout(matrix(c(1,2), 1), widths = c(1,.4))
+barplot_index(index = as.matrix(sojs), bars = 1:2, 
+              ylab = "Temps de séjour (années)", ylim = c(0,200))
+barplot_halflife(index = halflife, bars = 1:2, ylim = c(0, 850))
+dev.off()
+
+
+png("images/chap2_transient2.png", width = 7, height = 4, res = 300, units = "in")
 layout(matrix(c(1,2), 1), widths = c(1,.4))
 barplot_index(index = as.matrix(sojs), bars = 1:3, 
               ylab = "Temps de séjour (années)", ylim = c(0,200))
 barplot_halflife(index = halflife, bars = 1:3, ylim = c(0, 850))
+dev.off()
+
+
+### Schéma
+
+arr_l = matrix(rep(.3, 16),4)
+diag(arr_l) <- 0
+
+arr_l[1,4] = 0
+arr_l[4,1] = 0
+
+arr.lcol = matrix(rep("grey40", 16),4)
+arr.lcol[1,4] = "transparent"
+arr.lcol[4,1] = "transparent"
+
+png("images/chap2_schema_tr.png", width=5, height=3.8, res = 300, units = "in", bg = "transparent")
+par(mar=c(0,0,0,0))
+plotmat(trans_perc, pos = pos.box, curve = 0.07, name = states, 
+        lwd = 1.2, relsize = .9,
+        box.cex = 1.3, cex.txt = 0, txt.col = "white",
+        dtext = .35, txt.font = 2,
+        box.lwd = 0.1, box.type = "rect", shadow.size = 0.005,
+        box.prop = 0.35, box.size = 0.13, box.col = st_col,
+        arr.length = arr_l, arr.width = arr_l,  arr.type ="triangle",
+        arr.col = "grey40", arr.lcol = arr.lcol,
+        arr.lwd = 3, self.cex = .45, self.lwd = 3,
+        self.shifty = c(.07,0,0,-.07), self.shiftx = c(0,-.14,.14,0))
 dev.off()

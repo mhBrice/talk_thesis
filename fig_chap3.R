@@ -27,9 +27,9 @@ sap_recent <- sap12 %>%
 mhurd <- readRDS("../recruitment/res/mod_hurdle.RDS")
 
 
-### 1.  Augmentation Acer rubrum ####
+### 1.  Shift conceptuel ####
 
-### 2.  Shift conceptuel ####
+
 seqx <- seq(-12, 20, .01)
 col1 <- "grey35"
 col2 <- "red3"
@@ -63,45 +63,9 @@ mtext("Déplacement de la médiane vers le nord", 3, line = 1)
 dev.off()
 
 
-### 
 
-q1 <- qnorm(.9, 0, sd = 3.2)
-q2 <- qnorm(.9, 6, sd = 3)
-  
-png("images/chap3_shift_90.png", width = 6, height = 4, res = 300, units= "in")
-par(mar = c(3,3,2,3))
-plot0(c(-12, 20), c(0, .15))
+### 2. Shift en latitude des 4 espèces ####
 
-lines(seqx, dnorm(seqx, 0, sd = 3.2), col = col1, lwd = 2)
-text(-8, .07, "Distribution\nhistorique\n(1970-1981)", 
-     cex = 1, col = col1, adj = .5, xpd = NA)
-
-lines(seqx, dnorm(seqx, 6, sd = 3), col= col2, lwd = 2)
-text(14, .07, "Distribution\ncontemporaine\n(2005-2018)", 
-     cex = 1, col = col2, adj = .5, xpd = NA)
-
-abline(v = q1, col = col1, lwd = 1.3)
-
-abline(v = q2, col = col2, lwd = 1.3)
-
-points(x = c(q1, q2), y = c(-0.01,-0.01), xpd = NA,
-       pch = 24, col = c(col1, col2), bg = alpha(c(col1, col2), .2), 
-       lwd = 1.5, cex = 1.2)
-
-
-mtext("Latitude", 1, line = 1, font = 2)
-mtext("Fréquence d'occurrence", 2, line = 1, font = 2)
-
-arrows(x0 = q1, x1 = q2, y0 = .16, length = .1, lwd = 1.2, xpd = NA)
-mtext("Déplacement du 90e centile vers le nord", 3, line = 1, at = 6)
-
-dev.off()
-
-
-
-### 3. Shift en latitude Acer rubrum ####
-
-sp = "ACERUB"
 
 xlim <- c(2e+5, 6e+5)
 
@@ -120,82 +84,15 @@ st_transform(x, 4269)
 latdeg <- c(45.76, 47.56, 49.37)
 
 
-### Tous les sites ####
-
-tmp1 <- sap_histo[which(sap_histo[,sp]>0),]
-tmp2 <- sap_recent[which(sap_recent[,sp]>0),]
-
-png("images/chap3_lat_all1.png", width = 5, height = 4, res = 300, units ="in")
-par(mar = c(4,2,1,1))
-plot_shift(tmp1$lat, xlim = xlim, ylim = c(0, 120),
-           line = line,  br = br, unit = 1/1000)
-axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
-     mgp = c(3,.4,0), labels = seq(2e5, xlim[2], by = 2e5)/1000)
-axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
-     cex.axis = .85,
-     mgp = c(3,1.3,0), labels = paste0("(",latdeg,"°)"))
-axis(2, cex = .9, line = -.5, las = 1, tick = FALSE)
-mtext("Latitude (km)", 1, line = 3)
-usr = par("usr")
-arrows(x0 = 2e5, x1 = 6e+05, y0 = usr[3]*5.5, xpd = NA, lwd = 1.7, length = .1)
-dev.off()
-
-
-png("images/chap3_lat_all2.png", width = 5, height = 4, res = 300, units ="in")
-par(mar = c(4,2,1,1))
-plot_shift(tmp1$lat, tmp2$lat, xlim = xlim, ylim = c(0, 120),
-           line = line,  br = br, unit = 1/1000)
-axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
-     mgp = c(3,.4,0), labels = seq(2e5, xlim[2], by = 2e5)/1000)
-axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
-     cex.axis = .85,
-     mgp = c(3,1.3,0), labels = paste0("(",latdeg,"°)"))
-axis(2, cex = .9, line = -.5, las = 1, tick = FALSE)
-mtext("Latitude (km)", 1, line = 3)
-usr = par("usr")
-arrows(x0 = 2e5, x1 = 6e+05, y0 = usr[3]*5.5, xpd = NA, lwd = 1.7, length = .1)
-dev.off()
-
-### Perturbations ####
-
-dnames <- c("Peu ou pas de coupe", "Coupe modérée", "Coupe majeure")
-
-png("images/chap3_lat_coupe.png", width = 8, height = 3.5, res = 300, units ="in")
-layout(matrix(c(1:3,4,4,4), 2, byrow = T), heights = c(1, .1))
-par(mar = c(2.5,2,2,1), cex = .8)  
-for(d in 1:3) {
-  tmp1d <- tmp1$lat[which(tmp1$logging==d-1 & tmp1$natural==0)]
-  tmp2d <- tmp2$lat[which(tmp2$logging==d-1 & tmp2$natural==0)]
-
-  plot_shift(tmp1d, tmp2d, xlim = xlim, ylim = c(0, 31),
-             line = line,  br = br, unit = 1/1000)
-  if(d==1) axis(2, cex = .9, line = -.5, las = 1, tick = FALSE)
-  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
-       mgp = c(3,.4,0), labels = seq(2e5, xlim[2], by = 2e5)/1000)
-  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
-       cex.axis = .85,
-       mgp = c(3,1.3,0), labels = paste0("(",latdeg,"°)"))
-  
-  mtext(dnames[d], line = .4, cex = 1)
-
-}
-
-par(mar = c(0,2,0,1))
-plot0(text = "Latitude (km)", cex = 1.2)
-arrows(x0 = -.6, x1 = .6, y0 = -.65, xpd = NA, lwd = 1.7, length = .1)
-dev.off()
-
-
-### Shift en latitude 4 espèces ####
 
 mySpecies <- c("ACERUB", "ACESAC", "BETALL", "FAGGRA")
 spnames <- c("Acer rubrum", "Acer saccharum", "Betula alleghaniensis", "Fagus grandifolia")
 
+## Peu ou pas - Historique seulement ####
 
-
-png("images/chap3_lat_coupe01.png", width = 9, height = 3.5, res = 300, units ="in")
-layout(matrix(c(1:4,5,5,5,5), 2, byrow = T), heights = c(1, .1))
-par(mar = c(2.5,2,3.5,1), cex = .8)  
+png("images/chap3_lat_coupe01.png", width = 9, height = 3.7, res = 300, units ="in")
+layout(matrix(c(1:4,5,5,5,5, 6,6,6,6), 3, byrow = T), heights = c(1, .15, .15))
+par(mar = c(2.5,2,3.2,1), cex = .8)  
 for(i in 1:4) {
   
   sp <- mySpecies[i]
@@ -219,14 +116,61 @@ for(i in 1:4) {
 }
 
 par(mar = c(0,2,0,1))
-plot0(text = "Latitude (km)", cex = 1.2)
-arrows(x0 = -.6, x1 = .6, y0 = -.65, xpd = NA, lwd = 1.7, length = .1)
+plot0(text = "Latitude (km)", cex = 1.3)
+arrows(x0 = -.6, x1 = .6, y0 = -.9, xpd = NA, lwd = 1.7, length = .1)
+
+plot0()
+legend("bottom", legend = c("Distribution historique", "Distribution contemporaine"), 
+       fill = alpha(c("grey15", "red3"), .1), border = c("grey15", "red3"),
+       cex = 1.3, bty = "n", horiz = T)
+
 dev.off()
 
 
-png("images/chap3_lat_coupe1.png", width = 9, height = 3.5, res = 300, units ="in")
-layout(matrix(c(1:4,5,5,5,5), 2, byrow = T), heights = c(1, .1))
-par(mar = c(2.5,2,3.5,1), cex = .8)  
+## Peu ou pas ####
+
+png("images/chap3_lat_coupe0.png", width = 9, height = 3.7, res = 300, units ="in")
+layout(matrix(c(1:4,5,5,5,5, 6,6,6,6), 3, byrow = T), heights = c(1, .15, .15))
+par(mar = c(2.5,2,3.2,1), cex = .8)  
+for(i in 1:4) {
+  
+  sp <- mySpecies[i]
+  
+  tmp1 <- sap_histo[which(sap_histo[,sp]>0),]
+  tmp2 <- sap_recent[which(sap_recent[,sp]>0),]
+  
+  tmp1d <- tmp1$lat[which(tmp1$logging==0 & tmp1$natural==0)]
+  tmp2d <- tmp2$lat[which(tmp2$logging==0 & tmp2$natural==0)]
+  
+  ymax = max(c(hist(tmp1d,breaks = br, plot = F)$counts, hist(tmp2d, breaks = br, plot = F)$counts))
+  plot_shift(tmp1d, tmp2d,xlim = xlim, ylim = c(0, ymax),
+             line = line,  br = br, unit = 1/1000, main = spnames[i])
+  axis(2, cex = .9, line = -.5, las = 1, tick = FALSE)
+  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
+       mgp = c(3,.4,0), labels = seq(2e5, xlim[2], by = 2e5)/1000)
+  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
+       cex.axis = .85,
+       mgp = c(3,1.3,0), labels = paste0("(",latdeg,"°)"))
+  
+}
+
+par(mar = c(0,2,0,1))
+plot0(text = "Latitude (km)", cex = 1.3)
+arrows(x0 = -.6, x1 = .6, y0 = -.9, xpd = NA, lwd = 1.7, length = .1)
+
+plot0()
+legend("bottom", legend = c("Distribution historique", "Distribution contemporaine"), 
+       fill = alpha(c("grey15", "red3"), .1), border = c("grey15", "red3"),
+       cex = 1.3, bty = "n", horiz = T)
+
+dev.off()
+
+
+## Modérée ####
+
+png("images/chap3_lat_coupe1.png",  width = 9, height = 3.7, res = 300, units ="in")
+layout(matrix(c(1:4,5,5,5,5, 6,6,6,6), 3, byrow = T), heights = c(1, .15, .15))
+par(mar = c(2.5,2,3.2,1), cex = .8)  
 for(i in 1:4) {
   
   sp <- mySpecies[i]
@@ -250,13 +194,21 @@ for(i in 1:4) {
 }
 
 par(mar = c(0,2,0,1))
-plot0(text = "Latitude (km)", cex = 1.2)
-arrows(x0 = -.6, x1 = .6, y0 = -.65, xpd = NA, lwd = 1.7, length = .1)
+plot0(text = "Latitude (km)", cex = 1.3)
+arrows(x0 = -.6, x1 = .6, y0 = -.9, xpd = NA, lwd = 1.7, length = .1)
+
+plot0()
+legend("bottom", legend = c("Distribution historique", "Distribution contemporaine"), 
+       fill = alpha(c("grey15", "red3"), .1), border = c("grey15", "red3"),
+       cex = 1.3, bty = "n", horiz = T)
 dev.off()
 
-png("images/chap3_lat_coupe2.png", width = 9, height = 3.5, res = 300, units ="in")
-layout(matrix(c(1:4,5,5,5,5), 2, byrow = T), heights = c(1, .1))
-par(mar = c(2.5,2,3.5,1), cex = .8)  
+
+## Majeure ####
+
+png("images/chap3_lat_coupe2.png", width = 9, height = 3.7, res = 300, units ="in")
+layout(matrix(c(1:4,5,5,5,5, 6,6,6,6), 3, byrow = T), heights = c(1, .15, .15))
+par(mar = c(2.5,2,3.2,1), cex = .8)  
 for(i in 1:4) {
   
   sp <- mySpecies[i]
@@ -280,15 +232,17 @@ for(i in 1:4) {
 }
 
 par(mar = c(0,2,0,1))
-plot0(text = "Latitude (km)", cex = 1.2)
-arrows(x0 = -.6, x1 = .6, y0 = -.65, xpd = NA, lwd = 1.7, length = .1)
+plot0(text = "Latitude (km)", cex = 1.3)
+arrows(x0 = -.6, x1 = .6, y0 = -.9, xpd = NA, lwd = 1.7, length = .1)
+
+plot0()
+legend("bottom", legend = c("Distribution historique", "Distribution contemporaine"), 
+       fill = alpha(c("grey15", "red3"), .1), border = c("grey15", "red3"),
+       cex = 1.3, bty = "n", horiz = T)
+
 dev.off()
 
-# 3.1  Shift en altitude ####
-
-### 4  Hurdle ####
-
-### presenter les 4 espèces, juste zero part avec des bars foncé/pâle pour les variables.
+### 3. Histogramme de recrutement - zero inflated ####
 
 sap_env <- readRDS("../recruitment/data/sap_env.RDS")
 
@@ -304,6 +258,10 @@ hist(sap_env$ACERUB[which(sap_env$ecoreg3=="Mixed")],
 mtext("Nombre de recrues de Acer rubrum\ndans la sapinière à bouleau jaune", 1,  line = 3.2, adj = .55, font = 2)
 
 dev.off()
+
+### 4. Hurdle ####
+
+## presenter les 4 espèces, juste zero part avec des bars foncé/pâle pour les variables.
 
 
 r2z <- c(20.76, 45.37, 16.87, 40.43)
@@ -335,16 +293,13 @@ gr = list(Climatique = 1:4,
           Biotique = 11:13, 
           Perturbation = 14:17)
 
+### Zero part ####
+
 png("images/chap3_hurdleZ.png", width = 10, height = 5, res = 300, units = "in")
 
 #quartz(width = 10, height = 5)
 par(oma = c(1,0,0,.2))
 layout(matrix(c(1:5), 1), widths = c(.9,1,1,1,1))
-
-# par(mar = c(0,0,0,0))
-# plot0()
-# mtext("Modéle de recrutement", 3, line = -.5, font = 2)
-# mtext("Présence-absence des gaulis", 3, line = -2, cex = .9)
 
 par(mar = c(3,0,3,0))
 
@@ -381,33 +336,13 @@ mtext("Coefficient de pente", 1, outer = T, line = 0, at = .55)
 dev.off()
 
 
-newdata <- data.frame(expand.grid(sTP = 0, 
-                                   sCMI=0, 
-                                   slope_sTP = 0,
-                                   slope_sCMI = 0,
-                                   ph = "neutral",
-                                   drainage = "mesic",
-                                   VERSANT = "M",
-                                   A_BA_ACERUB = 1,
-                                   N_ACERUB=0, 
-                                   A_BA_boreal = 0 , 
-                                   logging = c("0", "1", "2"),
-                                   natural="0", 
-                                   age_mean2=0, time_interv = 10))
-predict(mhurd$ACERUB, newdata = newdata)
-
-### Modèle d'abondance #####
+### Count part #####
 
 png("images/chap3_hurdleC.png", width = 10, height = 5, res = 300, units = "in")
 
 #quartz(width = 10, height = 5)
 par(oma = c(1,0,0,.2))
 layout(matrix(c(1:5), 1), widths = c(.9,1,1,1,1))
-
-# par(mar = c(0,0,0,0))
-# plot0()
-# mtext("Modéle de recrutement", 3, line = -.5, font = 2)
-# mtext("Présence-absence des gaulis", 3, line = -2, cex = .9)
 
 par(mar = c(3,0,3,0))
 
@@ -442,47 +377,3 @@ mtext("Coefficient de pente", 1, outer = T, line = 0, at = .55)
 
 dev.off()
 
-
-### acer rubrum ####
-
-
-
-png("images/chap3_hurdle.png", width = 9, height = 4.5, res = 300, units = "in")
-
-#quartz(width = 8.5, height = 4.5)
-par(oma = c(0,2,2,.1))
-layout(matrix(1:6, 3, byrow = TRUE), heights = c(.18,1,.9))
-
-par(mar = c(0,0,0,0))
-plot0(text = "Présence-absence des gaulis", cex = 1.4)
-
-plot0(text = "Abondance des gaulis", cex = 1.4)
-
-mtext("Modéle de recrutement en deux parties", 3, outer = T, font = 2, line = .1)
-
-
-par(mar = c(1.6,2,1,1))
-plot_coef(mhurd, lab = labnames, gr = gr, type = "zero",
-          xlabels = T, ylab = FALSE, 
-          main = "", 
-          allnames = allnames, r2_c = 0.0286, r2_z = 0.2076,
-          x_cex = 0.9, 
-          pt_cex = 1.7, pt_lwd = 1.3,
-          ci_lwd = 1.7)
-
-
-mtext("Coefficient de pente", 2, outer = T, line = .5, at = .65)
-
-par(mar = c(0,2,2,1))
-for(i in 1:2){
-  plot0(x = c(1, length(labnames)), y = c(-1, 1))
-  for(g in 1:length(gr)) {
-    grl <- gr[[g]]
-    text(mean(grl), -.7, labels = names(gr[g]), cex = 1.4, xpd = NA)
-    arrows(x0 = min(grl)-.1, x1 = max(grl)+.1, y0 = -.5, 
-           angle = 90, code = 1, 
-           length = 0, col = "grey15", lwd = 1.5)
-  }
-}
-
-dev.off()
