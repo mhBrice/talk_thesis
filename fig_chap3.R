@@ -242,6 +242,109 @@ legend("bottom", legend = c("Distribution historique", "Distribution contemporai
 
 dev.off()
 
+
+### 2.1 Shift en latitude Acer rubrum ####
+
+
+xlim <- c(2e+5, 6e+5)
+
+br <- seq(1.8e+5, xlim[2], by = 20000)
+
+line <- seq(xlim[1], xlim[2], by = 1e5)
+
+### metres to degrees
+
+x = st_set_crs(st_sfc(st_point(c(-206660, 200000)), 
+                      st_point(c(-206660, 400000)),
+                      st_point(c(-206660, 600000))), 32198)
+
+st_transform(x, 4269)
+
+latdeg <- c(45.76, 47.56, 49.37)
+
+
+
+mySpecies <- "ACERUB"
+spnames <- "Acer rubrum"
+
+## Historique seulement ####
+
+sp <- "ACERUB"
+d_names <- c("Peu ou pas de coupe", "Coupe modérée", "Coupe majeure")
+
+tmp1 <- sap_histo[which(sap_histo[,sp]>0),]
+tmp2 <- sap_recent[which(sap_recent[,sp]>0),]
+
+
+
+png("images/chap3_lat_AR1.png", width = 8, height = 3.7, res = 300, units ="in")
+
+layout(matrix(c(1:3,4,4,4, 5,5,5), 3, byrow = T), heights = c(1, .15, .15))
+par(mar = c(2.5,2,3.2,1), cex = .8)  
+
+for(i in 1:3) { 
+  tmp1d <- tmp1$lat[which(tmp1$logging==i-1 & tmp1$natural==0)]
+  tmp2d <- tmp2$lat[which(tmp2$logging==i-1 & tmp2$natural==0)]
+  
+  ymax = max(c(hist(tmp1d, breaks = br, plot = F)$counts, hist(tmp2d, breaks = br, plot = F)$counts))
+  plot_shift(tmp1d, xlim = xlim, ylim = c(0, ymax),
+             line = line,  br = br, unit = 1/1000, main = d_names[i])
+  axis(2, cex = .9, line = -.5, las = 1, tick = FALSE)
+  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
+       mgp = c(3,.4,0), labels = seq(2e5, xlim[2], by = 2e5)/1000)
+  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
+       cex.axis = .85,
+       mgp = c(3,1.3,0), labels = paste0("(",latdeg,"°)"))
+  }
+  
+par(mar = c(0,2,0,1))
+plot0(text = "Latitude (km)", cex = 1.3)
+arrows(x0 = -.6, x1 = .6, y0 = -.9, xpd = NA, lwd = 1.7, length = .1)
+
+plot0()
+legend("bottom", legend = c("Distribution historique", "Distribution contemporaine"), 
+       fill = alpha(c("grey15", "red3"), .1), border = c("grey15", "red3"),
+       cex = 1.3, bty = "n", horiz = T)
+  
+dev.off()
+
+
+## AVANT-APRES ####
+
+png("images/chap3_lat_AR2.png", width = 8, height = 3.7, res = 300, units ="in")
+
+layout(matrix(c(1:3,4,4,4, 5,5,5), 3, byrow = T), heights = c(1, .15, .15))
+par(mar = c(2.5,2,3.2,1), cex = .8)  
+
+for(i in 1:3) { 
+  tmp1d <- tmp1$lat[which(tmp1$logging==i-1 & tmp1$natural==0)]
+  tmp2d <- tmp2$lat[which(tmp2$logging==i-1 & tmp2$natural==0)]
+  
+  ymax = max(c(hist(tmp1d, breaks = br, plot = F)$counts, hist(tmp2d, breaks = br, plot = F)$counts))
+  plot_shift(tmp1d, tmp2d, xlim = xlim, ylim = c(0, ymax),
+             line = line,  br = br, unit = 1/1000, main = d_names[i])
+  axis(2, cex = .9, line = -.5, las = 1, tick = FALSE)
+  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
+       mgp = c(3,.4,0), labels = seq(2e5, xlim[2], by = 2e5)/1000)
+  axis(1, tick = F, at = seq(2e5, xlim[2], by = 2e5), 
+       cex.axis = .85,
+       mgp = c(3,1.3,0), labels = paste0("(",latdeg,"°)"))
+}
+
+
+par(mar = c(0,2,0,1))
+plot0(text = "Latitude (km)", cex = 1.3)
+arrows(x0 = -.6, x1 = .6, y0 = -.9, xpd = NA, lwd = 1.7, length = .1)
+
+plot0()
+legend("bottom", legend = c("Distribution historique", "Distribution contemporaine"), 
+       fill = alpha(c("grey15", "red3"), .1), border = c("grey15", "red3"),
+       cex = 1.3, bty = "n", horiz = T)
+
+dev.off()
+
+
+
 ### 3. Histogramme de recrutement - zero inflated ####
 
 sap_env <- readRDS("../recruitment/data/sap_env.RDS")

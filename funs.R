@@ -1,3 +1,5 @@
+myround <- function(x, k) trimws(format(round(x, k), nsmall=k))
+
 ### PLOT P MATRIX ####
 plot_pmat <- function(mod, covariates = 0) {
   

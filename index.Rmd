@@ -1,7 +1,7 @@
 ---
-title: "Dynamique spatio-temporelle des forêts dans l'écotone boréal-tempéré en réponse aux changements globaux"
-subtitle: "Marie-Hélène Brice"
-author: 'Superviseurs: Pierre Legendre, Marie-Josée Fortin <br/> [<i class="fa fa-github" aria-hidden="true"></i> github.com/mhBrice/talk_thesis](https://github.com/mhBrice/talk_thesis)'
+title: "Comment les perturbations influencent-elles la réponse des forêts au changement climatique ?"
+subtitle: "Marie-Hélène Brice, PhD"
+author: '[<i class="fa fa-github" aria-hidden="true"></i> github.com/mhBrice/talk_thesis](https://github.com/mhBrice/talk_thesis)'
 
 
 output:
@@ -42,8 +42,21 @@ library(sf)
 source("funs.R")
 ```
 
+## À propos de moi
 
+**Formation**
 
+- Doctorat en écologie forestière sous la direction de Pierre Legendre (UdeM) et Marie-Josée Fortin (UofT)
+  - Thèse: [*Dynamique spatio-temporelle des forêts dans l’écotone boréal-tempéré en réponse aux changements globaux*](https://github.com/mhBrice/thesis/blob/master/Brice_Marie-Helene_2020_these.pdf)
+  
+- Maîtrise en écologie urbaine sous la direction de Stéphanie Pellerin (IRBV) et Monique Poulin (ULaval)
+  - Mémoire: [*Impact de l'urbanisation sur la diversité spécifique et fonctionnelle dans les forêts riveraines*](https://papyrus.bib.umontreal.ca/xmlui/handle/1866/13639)
+
+**À venir**
+
+- Post-doc avec Yan Boucher (MFFP) et Yves Bergeron (UQAT)
+
+---
 ## Changement climatique ![:chap](Introduction)
 
 <br>
@@ -69,7 +82,7 @@ x <- data.frame('![:scale 450px](images/intro_carte_cc.png)',
 knitr::kable(x, format = "html", col.names = NULL)
 ```
 
- 
+
 .footnote[Données bioclimatiques de Ressources naturelles Canada https://cfs.nrcan.gc.ca/projects/3/9]
 
 ---
@@ -164,7 +177,7 @@ Inventaires forestiers du Québec Méridional
 ## Les forêts du Québec ![:chap](Aire d'étude)
 
 
-.pull-left2[ 
+.pull-left2[
 <br>
 ![](images/carte_region.png)
 ]
@@ -191,7 +204,7 @@ Inventaires forestiers du Québec Méridional
 library(kableExtra)
 x <- data.frame('![:scale 250px](images/intro_bp_perturb1.png)',
            '![:scale 600px](images/intro_bp_perturb2.png)')
-knitr::kable(x, format = "html", col.names = NULL) 
+knitr::kable(x, format = "html", col.names = NULL)
 ```
 
 
@@ -202,7 +215,7 @@ knitr::kable(x, format = "html", col.names = NULL)
 
 class: inverse, center, middle
 
-# Chapitre 1 
+# Chapitre 1
 
 ### Changements de composition des forêts
 
@@ -223,7 +236,7 @@ class: inverse, center, middle
 
 > .image-holder[ ![:scale 1.2em](images/one.svg)] Quels sont les principaux moteurs des changements des communautés forestières au cours des dernières décennies?
 >
-> .image-holder[ ![:scale 1.2em](images/two.svg)] Les communautés forestières ont-elles subi une thermophilisation au cours des dernières décennies? 
+> .image-holder[ ![:scale 1.2em](images/two.svg)] Les communautés forestières ont-elles subi une thermophilisation au cours des dernières décennies?
 >
 >.image-holder[ ![:scale 1.2em](images/three.svg)] Quelles espèces d'arbres contribuent aux changements de composition?
 
@@ -246,7 +259,7 @@ class: inverse, center, middle
 library(kableExtra)
 x <- data.frame('![:scale 480px](images/chap1_reg_tbi.png)',
            '![:scale 370px](images/chap1_varpart.png)')
-knitr::kable(x, format = "html", col.names = NULL) 
+knitr::kable(x, format = "html", col.names = NULL)
 ```
 
 
@@ -402,7 +415,7 @@ class: inverse, center, middle
 x <- data.frame("Peu ou pas" = '![:scale 300px](images/chap2_pmat_coupe0.png)',
            "Modérée" = '![:scale 300px](images/chap2_pmat_coupe1.png)',
            "Majeure" = '![:scale 300px](images/chap2_pmat_coupe2.png)')
-knitr::kable(x, format = "html", col.names = c("Peu ou pas", "Modérée", "Majeure"), 
+knitr::kable(x, format = "html", col.names = c("Peu ou pas", "Modérée", "Majeure"),
              align = "c")
 ```
 
@@ -488,7 +501,7 @@ Temps de convergence ![:faic](arrow-right) temps pour atteindre 90% de l'équili
 ---
 class: inverse, center, middle
 
-# Chapitre 3 
+# Chapitre 3
 
 ### Recrutement des espèces tempérées
 
@@ -520,9 +533,13 @@ class: inverse, center, middle
 
 <br>
 
-.center[
-![](images/chap3_carte.png)
-]
+```{r}
+x <- data.frame('![:scale 400px](images/chap3_carte1.png)',
+           '![:scale 400px](images/chap3_carte2.png)')
+knitr::kable(x, format = "html", col.names = NULL)
+```
+
+
 
 <br>
 
@@ -539,49 +556,30 @@ class: inverse, center, middle
 ---
 ## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
 
-#### Peu ou pas de coupe
+##### Distribution des gaulis de *Acer rubrum*
 
-<br>
 
 .center[
-![](images/chap3_lat_coupe01.png)
+![](images/chap3_lat_AR1.png)
 ]
 
 ---
 ## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
 
-#### Peu ou pas de coupe
-
-<br>
-
-.center[![](images/chap3_lat_coupe0.png)]
-
-Migration d'environs 20-30 km vers le nord pour .alert[3 espèces] tempérées
-
----
-## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
-
-#### Coupe modérée
-
-<br>
-
-![](images/chap3_lat_coupe1.png)
-
-Migration d'environs 10-20 km vers le nord pour .alert[2 espèces] tempérées
+##### Distribution des gaulis de *Acer rubrum*
 
 
----
-## Déplacement des gaulis vers le nord ![:chap](Chapitre 3)
+.center[
+![](images/chap3_lat_AR2.png)
+]
 
-#### Coupe majeure
+.small[
+Forte augmentation des occurrences, en particulier dans les sites coupés
 
-<br>
+Migration de ~20 km vers le nord quand il y a peu ou pas de coupe ou des coupes modérées 
 
-![](images/chap3_lat_coupe2.png)
-
-Pas de migration.
-
-
+Pas de migration quand il y a des coupes majeures.
+]
 
 
 
@@ -591,16 +589,16 @@ Pas de migration.
 
 Modèle en deux parties (Hurdle) :
 
-- un processus pour les comptages de zéros 
+- un processus pour les comptages de zéros
   - Présence-absence de gaulis
   - Régression binomiale
 
-- <span style="color: #959c95;">un processus pour les comptages positifs </span>
-  - <span style="color: #959c95;">Abondance de gaulis</span>
-  - <span style="color: #959c95;">Régression binomiale négative tronquée</span>
+- un processus pour les comptages positifs 
+  - Abondance de gaulis
+  - Régression binomiale négative tronquée
 
 
-<div style = "position: absolute; top:120px; left:60%"> 
+<div style = "position: absolute; top:120px; left:60%">
 ![:scale 90%](images/chap3_recrue_hist.png)
 </div>
 
@@ -664,7 +662,7 @@ textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 
 **Perturbations**
 
-> ![:scale 1.2em](images/stump.svg) Coupes entre $t_{i-1}$ et $t_{i}$ 
+> ![:scale 1.2em](images/stump.svg) Coupes entre $t_{i-1}$ et $t_{i}$
 
 > ![:scale 1.1em](images/fire.svg) Perturbations naturelles entre $t_{i-1}$ et $t_{i}$
 
@@ -675,38 +673,100 @@ textplain(pos[3, ] + c(0.15, .4), lab = "n recrues", cex = 1.3)
 ---
 ## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
 
-Modèle de présence-absence de gaulis
+Recrutement des gaulis de *Acer rubrum* en fonction de 
+- l'**abondance de *Acer rubrum* matures** (i.e., disponibilité des propagules)
+
 <br>
 
 .center[
-![](images/chap3_hurdleZ.png)
-]
+![](images/chap3_acerub_ab.png) ]
+
+---
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
+
+Recrutement des gaulis de *Acer rubrum* en fonction de 
+- l'**abondance en espèces boréales** (i.e., effet prioritaire)
+
+<br>
+
+.center[
+![](images/chap3_acerub_boreal.png) ]
+
+
+---
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
+
+Recrutement des gaulis de *Acer rubrum* en fonction de 
+- la **qualité du drainage**
+
+<br>
+
+.center[
+![](images/chap3_acerub_drain.png)]
+
+
+
+---
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
+
+Recrutement des gaulis de *Acer rubrum* en fonction de 
+- la **position sur la pente**
+
+<br>
+
+.center[
+![](images/chap3_acerub_versant.png)]
+
+
+
+---
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
+
+Recrutement des gaulis de *Acer rubrum* en fonction de 
+- l'**intensité de coupe $\times$** l'**abondance de *Acer rubrum* matures**
+
+<br>
+
+.center[
+![](images/chap3_acerub_log.png) ]
+
+---
+## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
+
+Recrutement des gaulis de *Acer rubrum* en fonction de 
+- l'**intensité de perturbation naturelle $\times$** l'**abondance de *Acer rubrum* matures** 
+
+<br>
+
+.center[
+![](images/chap3_acerub_nat.png) ]
+
 
 ---
 ## Quels facteurs influencent le recrutement? ![:chap](Chapitre 3)
 
 
 .center[
-![:scale 32%](images/chap3_schema.png)
+![:scale 30%](images/chap3_schema.png)
 ]
 
 .small[
-**Le recrutement des espèces tempérées à leur limite nord est...** 
+**Le recrutement de *Acer rubrum* à sa limite nord est...**
 
 
 ![:faic](arrow-circle-up) favorisé par:
-> la proximité d'arbres de la même espèce pour la dispersion; 
+> la proximité d'arbres de la même espèce pour la dispersion;
 >
-> les coupes partielles.
-
+> les perturbations.
+>
+> les sols mésiques dans les hauts de pente;
 
 ![:faic](arrow-circle-down) contraint par:
 
 > l'effet inhibiteur prioritaire du couvert en espèces boréales;
 >
 > les sols hydriques dans les bas de pente;
->
-> les perturbations naturelles.
+
 ]
 
 
@@ -802,7 +862,7 @@ Les perturbations .alert[majeures]:
 <br>
 --
 
-Les coupes partielles pourraient 
+Les coupes partielles pourraient
 
 > ![:faic](arrow-down) le crédit d'extinction des espèces boréales
 >
@@ -825,7 +885,7 @@ Les coupes partielles pourraient
 
 <br>
 
-**Quels sont les compromis entre l’intégrité des écosystèmes, leur capacité à s’adapter aux conditions futures, et les besoins de l’exploitation forestière ?** 
+**Quels sont les compromis entre l’intégrité des écosystèmes, leur capacité à s’adapter aux conditions futures, et les besoins de l’exploitation forestière ?**
 
 
 ---
@@ -841,12 +901,30 @@ class: inverse, center, middle
 # Merci!
 
 ---
+## Résultats des modèles de diversité ß
+
+<br>
+
+.center[
+![:scale 80%](images/chap1_reg_BC.png)
+]
+
+---
 ## Thermophilisation vs succession
 
 <br>
 
 .center[
 ![](images/chap1_SM_thermo_lat.png)
+]
+
+---
+## Définition des états
+
+<br>
+
+.center[
+![:scale 60%](images/chap2_indval_states.png)
 ]
 
 
@@ -857,14 +935,20 @@ class: inverse, center, middle
 ![:scale 75%](images/chap2_msm.png)
 ]
 
+---
+## Résultats du modèle de recrutement
+
+Présence de gaulis
+
+.center[
+![](images/chap3_hurdleZ.png)
+]
 
 ---
-## Résultats du modèle de recrutement 
+## Résultats du modèle de recrutement
 
 Abondance de gaulis
 
 .center[
 ![](images/chap3_hurdleC.png)
 ]
-
-
